@@ -1,0 +1,2 @@
+# seminarObjektno
+repo za seminar
