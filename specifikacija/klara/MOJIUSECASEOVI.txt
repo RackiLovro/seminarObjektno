@@ -25,3 +25,15 @@ UseCases – 2, 5, 8, 11, 14
 		1.	Korisnik pregledava recepte
 		2.	Korisnik odabire recept kojega želi dodati pod „Favorites“
 		3.	Recept se nalazi u favoritima tog korisnika
+
+
+8) Brisanje vlastitog recepta
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Obrisati vlastiti recept
+	•	Sudionici: Baza podataka
+	•	Preduvjet: Korisnik je prijavljen u sustav
+	•	Opis osnovnog tijeka:
+		1.	Korisnik pregledava vlastite recepte
+		2.	Korisnik odabire koji recept želi obrisati
+		3.	Korisnik odabire opciju za brisanje 
+		4.	Recept se briše iz baze podataka te više ne postoji u sustavu
