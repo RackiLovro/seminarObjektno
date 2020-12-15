@@ -51,3 +51,13 @@ UseCases – 2, 5, 8, 11, 14
 	•	Opis mogućih odstupanja:
 		1.  Ne postoji recept koji zadovoljava filtre pretrage
 			• Sustav obavještava korisnika kako ne postoji recept u sustavu koji bi zadovoljavao postavljene kriterije
+		
+		
+14) Detaljnije prikazivanje recepta
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Detaljno prikazati odabrani recept 
+	•	Sudionici: Baza podataka
+	•	Preduvjet: -
+	•	Opis osnovnog tijeka:
+		1.	Korisnik odabire koji recept želi u potpunosti prikazati
+		2.	Sustav prikazuje detaljni tekst recepta, popis potrebnih sastojaka, slike, …
