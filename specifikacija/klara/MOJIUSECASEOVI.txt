@@ -14,3 +14,14 @@ UseCases – 2, 5, 8, 11, 14
 			•	Sustav obavještava korisnika o pogrešnom formatu e-maila i traži od korisnika da ponovno unese podatke
 		2.	Korisnik je unio ili neregistrirani e-mail ili krivu lozinku
 			•	Sustav obavještava korisnika kako uneseni podaci nisu valjani te od njega traži da pokuša ponovo
+
+
+5) Dodavanje recepta pod „Favorites“
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Spremiti željeni recept pod „Favorites“
+	•	Sudionici: Baza podataka
+	•	Preduvjet: Korisnik je prijavljen u sustav
+	•	Opis osnovnog tijeka:
+		1.	Korisnik pregledava recepte
+		2.	Korisnik odabire recept kojega želi dodati pod „Favorites“
+		3.	Recept se nalazi u favoritima tog korisnika
