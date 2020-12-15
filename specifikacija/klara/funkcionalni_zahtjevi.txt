@@ -1,0 +1,28 @@
+Funkcionalni zahtjevi:
+
+Dionici:
+	1.	Korisnici
+	2.	Razvojni tim
+Aktori i njihovi funkcionalni zahtjevi:
+	1.	Neregistrirani/neprijavljeni korisnik (inicijator) može:
+		a.	pregledavati recepte
+		b.	pretraživati recepte po sastojcima, imenu ili autoru
+		c.	pristupiti detaljnom prikazu recepta
+		d.	se registrirati u sustav, stvoriti novi korisnički račun za koji su mu potrebni korisničko ime, e-mail i lozinka
+	2.	Registrirani korisnik (inicijator) može:
+		a.	se ulogirati u sustav sa svojim korisničkim podacima
+		b.	pregledavati i mijenjati osobne podatke
+		c.	izbrisati svoj korisnički račun
+		d.	dodati, izbrisati i promijeniti vlastite recepte
+		e.	pregledavati recepte
+		f.	pretraživati recepte po sastojcima, imenu ili autoru
+		g.	pristupiti detaljnom prikazu recepta
+		h.	dodavati recepte pod „Favorites“ i ukloniti iste
+		i.	pregledavati profile drugih korisnika
+	3.	Administrator (inicijator) može:
+		a.	vidjeti popis svih registriranih korisnika i njihovih osobnih podataka
+		b.	brisati korisnike
+		c.	brisati recepte
+	4.	Baza podataka (sudionik):
+		a.	pohranjuje sve podatke o korisnicima i njihovim ovlastima
+		b.	pohranjuje sve podatke o receptima, sastojcima i drugim detaljima
