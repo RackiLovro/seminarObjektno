@@ -1,1 +1,16 @@
-pet use caseova
+UseCases – 2, 5, 8, 11, 14
+
+2) Login u sustav
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Ulogirati se u sustav
+	•	Sudionici: Baza podataka
+	•	Preduvjet: Registracija korisnika
+	•	Opis osnovnog tijeka:
+		1.	Korisnik unosi svoj e-mail/username? za login te svoju lozinku
+		2.	Podatci se provjeravaju u bazi podataka
+		3.	Korisnik pristupa svom računu
+	•	Opis mogućih odstupanja:
+		1.	Korisnik unosi e-mail u pogrešnom formatu e-maila
+			•	Sustav obavještava korisnika o pogrešnom formatu e-maila i traži od korisnika da ponovno unese podatke
+		2.	Korisnik je unio ili neregistrirani e-mail ili krivu lozinku
+			•	Sustav obavještava korisnika kako uneseni podaci nisu valjani te od njega traži da pokuša ponovo
