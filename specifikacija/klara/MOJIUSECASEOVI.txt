@@ -37,3 +37,17 @@ UseCases – 2, 5, 8, 11, 14
 		2.	Korisnik odabire koji recept želi obrisati
 		3.	Korisnik odabire opciju za brisanje 
 		4.	Recept se briše iz baze podataka te više ne postoji u sustavu
+
+
+11) Pretraživanje recepata po sastojcima
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Pronaći sve recepte koji sadržavaju odabrane sastojke
+	•	Sudionici: Baza podataka
+	•	Preduvjet: -
+	•	Opis osnovnog tijeka:
+		1.	Korisnik označuje sastojke koje želi naći u receptu
+		2.	Korisnik odabire opciju pretraživanja
+		3.	Sustav prikazuje adekvatne recepte
+	•	Opis mogućih odstupanja:
+		1.  Ne postoji recept koji zadovoljava filtre pretrage
+			• Sustav obavještava korisnika kako ne postoji recept u sustavu koji bi zadovoljavao postavljene kriterije
