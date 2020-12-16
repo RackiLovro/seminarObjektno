@@ -1,1 +1,81 @@
-pet use caseova
+UseCases - 1, 4, 7, 10, 13
+
+1) Registracija korisnika
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Stvoriti korisnički račun za pristup sustavu
+	•	Sudionici: Baza podataka
+	•	Preduvjet: Korisnik ima važeću e-mail adresu
+	•	Opis osnovnog tijeka:
+		1.	Korisnik odabire registraciju
+		2.	Korisnik unosi podatke za svoj korisnički račun
+		3.	Sustav provjerava ispravnost korisničkih podataka
+		4. 	Korisnički račun se sprema u bazu podataka
+		5.	Korisnik na e-mail prima link za potvrdu registracije
+		6. 	Korisnik klikom na link potvrđuje registraciju
+		7.	Potvrda registracije sprema se u bazu podataka
+	•	Opis mogućih odstupanja:
+		3.a	Korisnik odabire zauzet ili neispravan e-mail ili unosi korisničke podatke u krivom formatu
+			•	Sustav obavještava korisnika o pogrešnom formatu e-maila i traži od korisnika da ponovno unese podatke
+			•	Korisnik mijenja krivo unesene podatke te uspješno završava registraciju ili odustaje
+
+4) Promjena podataka o korisniku
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Promijeniti korisničke podatke
+	•	Sudionici: Baza podataka
+	•	Preduvjet: Korisnik je prijavljen u sustav
+	•	Opis osnovnog tijeka:
+		1.	Korisnik odabire opciju promjene korisničkih podataka
+		2.	Korisnik upisuje nove korisničke podatke koje želi promijeniti
+		3.	Sustav provjerava ispravnost korisničkih podataka
+		4. 	Korisnik sprema promjene
+		5.	Promjene se spremaju u bazu podataka
+	•	Opis mogućih odstupanja:
+		3.a	Korisnik je neispravno upisao nove podatke
+			•	Sustav obavještava korisnika o pogrešno upisanim podacima 
+			•	Korisnik mijenja krivo unesene podatke te uspješno završava registraciju ili odustaje
+		4.a	Korisnik nije spremio promjene
+			•	Novi korisnički podaci se ne spremaju u bazu podataka
+
+7) Dodavanje svojih recepata
+•	Glavni sudionik: Korisnik
+	•	Cilj: Dodati recept u sustav
+	•	Sudionici: Baza podataka
+	•	Preduvjet: Korisnik je prijavljen u sustav
+	•	Opis osnovnog tijeka:
+		1.	Korisnik odabira opciju dodavanja recepta u sustav
+		2.	Korisnik određuje sastojke recepta
+		3.	Korisnik upisuje naziv recepta
+		4.	Korisnik određuje korake recepta
+		5.	Korisnik dodaje slike recepta
+		6. 	Korisnik sprema novi recept
+		7.	Recept se sprema u bazu podataka
+	•	Opis mogućih odstupanja:
+		5.a	Korisnik nije odlučio dodati slike recepta
+			•	Sustav obavještava korisnika o nedostatku slika
+			•	Korisnik dodaje slike ili odlučuje nastaviti bez dodavanja slika
+		6.a	Korisnik nije spremio recept
+			•	Recept se ne sprema u bazu podataka
+
+10) Pregledavanje recepata
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Pregledati deset najpopularnijih recepata
+	•	Sudionici: Baza podataka
+	•	Preduvjet: -
+	•	Opis osnovnog tijeka:
+		1.	Korisnik odabire opciju pregledavanja recepata
+		1.	Korisnik određuje kriterij pregledavanja (najnoviji, najjednostavniji ili najomiljeniji)
+		2.	Sustav prikazuje deset recepata po određenom kriteriju
+
+13) Pretraživanje recepata po autoru
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Pronaći sve recepte određenog autora
+	•	Sudionici: Baza podataka
+	•	Preduvjet: -
+	•	Opis osnovnog tijeka:
+		1.	Korisnik upisuje korisničko ime autora čije recepte želi pronaći
+		2.	Korisnik odabire opciju pretraživanja
+		3.	Sustav prikazuje adekvatne recepte
+	•	Opis mogućih odstupanja:
+		1.  Traženi autor nije objavio niti jedan recept
+			• Sustav obavještava korisnika da ne postoji recept u sustavu koji bi zadovoljavao postavljene kriterije
+	
