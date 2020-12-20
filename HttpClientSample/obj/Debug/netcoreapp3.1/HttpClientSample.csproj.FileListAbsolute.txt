@@ -1,0 +1,17 @@
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\bin\Debug\netcoreapp3.1\HttpClientSample.exe
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\bin\Debug\netcoreapp3.1\HttpClientSample.deps.json
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\bin\Debug\netcoreapp3.1\HttpClientSample.runtimeconfig.json
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\bin\Debug\netcoreapp3.1\HttpClientSample.runtimeconfig.dev.json
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\bin\Debug\netcoreapp3.1\HttpClientSample.dll
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\bin\Debug\netcoreapp3.1\HttpClientSample.pdb
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\obj\Debug\netcoreapp3.1\HttpClientSample.csprojAssemblyReference.cache
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\obj\Debug\netcoreapp3.1\HttpClientSample.AssemblyInfoInputs.cache
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\obj\Debug\netcoreapp3.1\HttpClientSample.AssemblyInfo.cs
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\obj\Debug\netcoreapp3.1\HttpClientSample.csproj.CoreCompileInputs.cache
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\obj\Debug\netcoreapp3.1\HttpClientSample.csproj.CopyComplete
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\obj\Debug\netcoreapp3.1\HttpClientSample.dll
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\obj\Debug\netcoreapp3.1\HttpClientSample.pdb
+C:\Users\racki\Documents\OO\seminar\seminarObjektno\HttpClientSample\obj\Debug\netcoreapp3.1\HttpClientSample.genruntimeconfig.cache
