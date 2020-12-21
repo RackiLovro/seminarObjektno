@@ -1,1 +1,56 @@
-pet use caseova
+UseCases - 3, 6, 9, 12, 15
+
+3) Promjena lozinke za korisnika
+		- Glavni sudionik: Korisnik
+		- Cilj: Promijeniti lozinku koju korisnik koristi za login postupak
+		- Sudionici: Baza podataka
+		- Preduvjet: Korisnik je prijavljen u sustav
+		- Opis osnovnog tijeka:
+			1. Korisnik odabire opciju promjene lozinke
+			2. Korisnik unosi staru lozinku i novu lozinku dva puta
+			3. Korisnik potvrđuje svoj izbor lozinke
+		- Opis mogućih odstupanja:
+			1. Stara lozinka koja je unesena je kriva:
+				-> Sustav ispisuje odgovarajuću poruku i korisnik opet unosi staru i novu lozinku pa opet potvrđuje svoj odabir
+
+6) Micanje recepta iz "Favorites"
+		- Glavni sudionik: Korisnik
+		- Cilj: Ukloniti željeni recept iz kategorije "Favorites"
+		- Sudionici: Baza podataka
+		- Preduvjet: Korisnik je prijavljen u sustav
+		- Opis osnovnog tijeka:
+			1. Korisnik pregledava recepte koji su označeni kao "Favorites"
+			2. Korisnik odabire recept koji želi maknuti iz "Favorites"
+			3. Korisnik odabire opciju koja uklanja željeni recept iz "Favorites"
+
+9) Uređivanje recepata koje smo napravili
+		- Glavni sudionik: Korisnik
+		- Cilj: Mijenjanje podataka vezanih za određeni recept (sastojci, ime, ...)
+		- Sudionici: Baza podataka
+		- Preduvjet: Korisnik je ulogiran u sustav, vlasnik je recepta koji želi mijenjati
+		- Opis osnovnog tijeka:
+			1. Korisnik odabire recept kojeg želi uređivati
+			2. Korisnik uređuje informacije recepta (koristeći forme za unos podataka)
+			3. Korisnik potvrđuje svoje promjene i sprema ih
+
+12) Pretraživanje recepta po imenu
+		- Glavni sudionik: Korisnik
+		- Cilj: Korisnik želi naći određeni recept, a zna njegovo ime
+		- Sudionici: Baza podataka
+		- Preduvjet: Recept sa navedenim imenom mora postojati u sustavu
+		- Opis osnovnog tijeka:
+			1. Korisnik odabire opciju pretraživanja recepta
+			2. Korisnik unosi ime recepta
+			3. Korisnik odabire recept iz skupa rezultata pretrage
+		- Opis mogućih odstupanja:
+			1. Recept ne postoji s takvim imenom:
+				-> Sustav ispiše poruku da nije uspio naći recept i predlaže korisniku da pokuša neko drugo ime
+
+15) Prikaz korisničkog profila
+		- Glavni sudionik: Korisnik
+		- Cilj: Pregledati informacije registriranog korisnika
+		- Sudionici: Baza podataka
+		- Preduvjet: Korisnik je ulogiran u sustav
+		- Opis osnovnog tijeka:
+			1. Korisnik odabire opciju pregleda korisničkog profila
+			2. Korisnik pregledava vlastite korisničke informacije
