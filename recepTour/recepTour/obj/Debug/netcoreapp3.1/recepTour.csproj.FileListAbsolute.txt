@@ -1,0 +1,4 @@
+C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\recepTour.csprojAssemblyReference.cache
+C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\recepTour.AssemblyInfoInputs.cache
+C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\recepTour.AssemblyInfo.cs
+C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\recepTour.csproj.CoreCompileInputs.cache
