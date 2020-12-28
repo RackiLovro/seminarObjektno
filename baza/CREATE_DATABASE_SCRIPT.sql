@@ -45,6 +45,7 @@ CREATE TABLE "User_recipes" (
 CREATE TABLE "Recipe_steps" (
   "ID" SERIAL PRIMARY KEY,
   "step_number" int,
+  "description" varchar,
   "recipe_ID" int
 );
 
