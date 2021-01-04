@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using recepTour.Models;
@@ -21,8 +23,18 @@ namespace recepTour.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.Users.Include(u => u.UserType);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var users = _context.Users.Select(u => new
+            {
+                u.Id,
+                u.Email,
+                u.Nickname,
+                u.PasswordHash,
+                u.Status,
+                u.EmailConfirmed,
+                u.UserTypeId
+            });
+
+            return Json(await users.ToListAsync(), new JsonSerializerOptions());
         }
 
         // GET: Users/Details/5

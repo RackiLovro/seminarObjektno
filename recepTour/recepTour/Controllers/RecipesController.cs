@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using recepTour.Models;
 
 namespace recepTour.Controllers
@@ -21,8 +24,14 @@ namespace recepTour.Controllers
         // GET: Recipes
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.Recipes.Include(r => r.DiffLevel);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var recipes = _context.Recipes.Select(r => new
+            {
+                r.Id,
+                r.Title,
+                r.DiffLevelId
+            });
+
+            return Json(await recipes.ToListAsync(), new JsonSerializerOptions());
         }
 
         // GET: Recipes/Details/5

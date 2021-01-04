@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,8 +22,14 @@ namespace recepTour.Controllers
         // GET: Pictures
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.Pictures.Include(p => p.Recipe);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var pictures = _context.Pictures.Select(p => new
+            {
+                p.Id,
+                p.Url,
+                p.RecipeId
+            });
+
+            return Json(await pictures.ToListAsync(), new JsonSerializerOptions());
         }
 
         // GET: Pictures/Details/5

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,8 +22,14 @@ namespace recepTour.Controllers
         // GET: Groceries
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.Groceries.Include(g => g.Type);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var groceries = _context.Groceries.Select(g => new
+            {
+                g.Id,
+                g.Name,
+                g.TypeId
+            });
+
+            return Json(await groceries.ToListAsync(), new JsonSerializerOptions());
         }
 
         // GET: Groceries/Details/5
