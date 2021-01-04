@@ -11,9 +11,9 @@ namespace recepTour.Controllers
 {
     public class UserFavoritesController : Controller
     {
-        private readonly d3jgof5caojknsContext _context;
+        private readonly RecepTourContext _context;
 
-        public UserFavoritesController(d3jgof5caojknsContext context)
+        public UserFavoritesController(RecepTourContext context)
         {
             _context = context;
         }

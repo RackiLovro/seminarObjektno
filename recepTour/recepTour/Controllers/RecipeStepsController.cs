@@ -11,9 +11,9 @@ namespace recepTour.Controllers
 {
     public class RecipeStepsController : Controller
     {
-        private readonly d3jgof5caojknsContext _context;
+        private readonly RecepTourContext _context;
 
-        public RecipeStepsController(d3jgof5caojknsContext context)
+        public RecipeStepsController(RecepTourContext context)
         {
             _context = context;
         }

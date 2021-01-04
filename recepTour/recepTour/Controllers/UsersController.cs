@@ -11,9 +11,9 @@ namespace recepTour.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly d3jgof5caojknsContext _context;
+        private readonly RecepTourContext _context;
 
-        public UsersController(d3jgof5caojknsContext context)
+        public UsersController(RecepTourContext context)
         {
             _context = context;
         }

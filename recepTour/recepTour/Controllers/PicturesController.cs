@@ -11,9 +11,9 @@ namespace recepTour.Controllers
 {
     public class PicturesController : Controller
     {
-        private readonly d3jgof5caojknsContext _context;
+        private readonly RecepTourContext _context;
 
-        public PicturesController(d3jgof5caojknsContext context)
+        public PicturesController(RecepTourContext context)
         {
             _context = context;
         }

@@ -11,9 +11,9 @@ namespace recepTour.Controllers
 {
     public class GroceryTypesController : Controller
     {
-        private readonly d3jgof5caojknsContext _context;
+        private readonly RecepTourContext _context;
 
-        public GroceryTypesController(d3jgof5caojknsContext context)
+        public GroceryTypesController(RecepTourContext context)
         {
             _context = context;
         }

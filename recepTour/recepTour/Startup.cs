@@ -25,7 +25,7 @@ namespace recepTour
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<d3jgof5caojknsContext>();
+            services.AddDbContext<RecepTourContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

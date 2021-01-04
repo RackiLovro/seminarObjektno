@@ -11,9 +11,9 @@ namespace recepTour.Controllers
 {
     public class RecipeDifficultiesController : Controller
     {
-        private readonly d3jgof5caojknsContext _context;
+        private readonly RecepTourContext _context;
 
-        public RecipeDifficultiesController(d3jgof5caojknsContext context)
+        public RecipeDifficultiesController(RecepTourContext context)
         {
             _context = context;
         }

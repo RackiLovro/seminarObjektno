@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace recepTour.Models
 {
-    public partial class d3jgof5caojknsContext : DbContext
+    public partial class RecepTourContext : DbContext
     {
-        public d3jgof5caojknsContext()
+        public RecepTourContext()
         {
         }
 
-        public d3jgof5caojknsContext(DbContextOptions<d3jgof5caojknsContext> options)
+        public RecepTourContext(DbContextOptions<RecepTourContext> options)
             : base(options)
         {
         }
