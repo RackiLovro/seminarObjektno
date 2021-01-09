@@ -1,6 +1,6 @@
 Nefunkcionalni zahtjevi:
 •	Sustav treba omogućiti rad više korisnika u stvarnom vremenu
-•	Jezik korisničkog sučelja je hrvatski, dok će jezik u programskom kodu biti engleski
+•	Jezik korisničkog sučelja i jezik u programskom kodu je engleski
 •	Korisničko sučelje i sustav moraju podržavati hrvatsku abecedu (dijakritičke znakove) pri unosu i prikazu tekstualnog sadržaja
 •	Vrijeme potrebno da se dohvati neki podatak iz baze podataka treba biti relativno kratko (ne više od nekoliko sekundi)
 •	Neispravno korištenje korisničkog sučelja ne smije narušiti funkcionalnost i rad sustava 
