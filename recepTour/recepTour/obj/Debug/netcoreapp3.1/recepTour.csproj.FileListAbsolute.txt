@@ -221,3 +221,8 @@ C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreap
 C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\Razor\Views\UserFavorites\Details.cshtml.g.cs
 C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\Razor\Views\UserFavorites\Edit.cshtml.g.cs
 C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\Razor\Views\UserFavorites\Index.cshtml.g.cs
+C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\Razor\Views\UserRecipes\Create.cshtml.g.cs
+C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\Razor\Views\UserRecipes\Delete.cshtml.g.cs
+C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\Razor\Views\UserRecipes\Details.cshtml.g.cs
+C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\Razor\Views\UserRecipes\Edit.cshtml.g.cs
+C:\Users\racki\Documents\seminarObjektno\recepTour\recepTour\obj\Debug\netcoreapp3.1\Razor\Views\UserRecipes\Index.cshtml.g.cs
