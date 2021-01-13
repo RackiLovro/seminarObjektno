@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,13 +21,7 @@ namespace recepTour.Controllers
         // GET: UserTypes
         public async Task<IActionResult> Index()
         {
-            var userTypes = _context.UserTypes.Select(ut => new
-            {
-                ut.Id,
-                ut.UserType1
-            });
-
-            return Json(await userTypes.ToListAsync(), new JsonSerializerOptions());
+            return View(await _context.UserTypes.ToListAsync());
         }
 
         // GET: UserTypes/Details/5

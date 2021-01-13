@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,13 +21,8 @@ namespace recepTour.Controllers
         // GET: UserFavorites
         public async Task<IActionResult> Index()
         {
-            var userFavorites = _context.UserFavorites.Select(uf => new
-            {
-                uf.UserId,
-                uf.RecipeId
-            });
-
-            return Json(await userFavorites.ToListAsync(), new JsonSerializerOptions());
+            var d3jgof5caojknsContext = _context.UserFavorites.Include(u => u.Recipe).Include(u => u.User);
+            return View(await d3jgof5caojknsContext.ToListAsync());
         }
 
         // GET: UserFavorites/Details/5
