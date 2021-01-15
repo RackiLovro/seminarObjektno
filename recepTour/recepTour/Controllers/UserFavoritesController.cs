@@ -21,8 +21,8 @@ namespace recepTour.Controllers
         // GET: UserFavorites
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.UserFavorites.Include(u => u.Recipe).Include(u => u.User);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var userFavorites = _context.UserFavorites.Include(u => u.Recipe).Include(u => u.User);
+            return View(await userFavorites.ToListAsync());
         }
 
         // GET: UserFavorites/Details/5

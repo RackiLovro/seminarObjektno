@@ -21,8 +21,8 @@ namespace recepTour.Controllers
         // GET: Recipes
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.Recipes.Include(r => r.DiffLevel);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var recipes = _context.Recipes.Include(r => r.DiffLevel);
+            return View(await recipes.ToListAsync());
         }
 
         // GET: Recipes/Details/5
