@@ -119,6 +119,10 @@ _TeamCity*
 *.coverage
 *.coveragexml
 
+../.vs/*
+obj/* 
+bin/*
+
 # NCrunch
 _NCrunch_*
 .*crunch*.local.xml
