@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using recepTour.Models;
 
@@ -63,7 +64,16 @@ namespace recepTour.Controllers
             user.UserTypeId = _context.UserTypes.Where(d => d.UserType1 == "user").Select(d => d.Id).FirstOrDefault();
             user.PasswordHash = EncodePasswordMd5(uc.Password);
             _context.Add(user);
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                ViewBag.message = "The user " + user.Nickname + " is not saved successfully";
+                ModelState.AddModelError("", "E-mail or nickname already in use!") ;
+                return View(uc);
+            }
             ViewBag.message = "The user " + user.Nickname + " is saved successfully";
             return View();
         }
