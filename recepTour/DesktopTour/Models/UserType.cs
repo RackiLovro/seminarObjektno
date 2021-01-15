@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace recepTour
+namespace DesktopTour
 {
     public partial class UserType
     {

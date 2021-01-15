@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DesktopTour.Models;
 
 namespace DesktopTour.View
 {
@@ -22,6 +23,16 @@ namespace DesktopTour.View
         public Homepage()
         {
             InitializeComponent();
+            lovroide();
+        }
+
+        public void lovroide()
+        {
+            var lovro = new DesktopTourContext();
+
+            var luka = lovro.Recipes.ToList().Select(e => e.Title);
+
+            var luka1 = "lovro";
         }
     }
 }

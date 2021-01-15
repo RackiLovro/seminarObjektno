@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-namespace recepTour
+namespace DesktopTour.Models
 {
-    public partial class d3jgof5caojknsContext : DbContext
+    public partial class DesktopTourContext : DbContext
     {
-        public d3jgof5caojknsContext()
+        public DesktopTourContext()
         {
         }
 
-        public d3jgof5caojknsContext(DbContextOptions<d3jgof5caojknsContext> options)
+        public DesktopTourContext(DbContextOptions<DesktopTourContext> options)
             : base(options)
         {
         }
