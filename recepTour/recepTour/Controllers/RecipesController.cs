@@ -19,9 +19,15 @@ namespace recepTour.Controllers
         }
 
         // GET: Recipes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var recipes = _context.Recipes.Include(r => r.DiffLevel);
+            var recipes = from r in _context.Recipes select r;
+
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                recipes = recipes.Where(r => r.Title.Contains(searchString));
+            }
+
             return View(await recipes.ToListAsync());
         }
 
