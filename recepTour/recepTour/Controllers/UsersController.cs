@@ -75,7 +75,7 @@ namespace recepTour.Controllers
                 return View(uc);
             }
             ViewBag.message = "The user " + user.Nickname + " is saved successfully";
-            return View();
+            return RedirectToAction(nameof(Index));
         }
 
 

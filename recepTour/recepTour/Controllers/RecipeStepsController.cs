@@ -44,12 +44,22 @@ namespace recepTour.Controllers
             return View(recipeStep);
         }
 
-        // GET: RecipeSteps/Create
+
         public IActionResult Create()
         {
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id");
-            return View();
+            RecipeStep step = TempData.Get<RecipeStep>("step");
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", step.RecipeId);
+            ViewData["StepNumber"] = step.StepNumber;
+            TempData.Put("step", step);
+            return View(step);
         }
+
+        //// GET: RecipeSteps/Create
+        //public IActionResult Create()
+        //{
+        //    ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id");
+        //    return View();
+        //}
 
         // POST: RecipeSteps/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -62,7 +72,25 @@ namespace recepTour.Controllers
             {
                 _context.Add(recipeStep);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                RecipeStep step = TempData.Get<RecipeStep>("step");
+                step.StepNumber++;
+                TempData.Put("step", step);
+                return RedirectToAction("Create", "RecipeSteps");
+            }
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeStep.RecipeId);
+            return View(recipeStep);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Continue([Bind("Id,StepNumber,RecipeId,Description")] RecipeStep recipeStep)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(recipeStep);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Create", "RecipeGroceries");
             }
             ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeStep.RecipeId);
             return View(recipeStep);
