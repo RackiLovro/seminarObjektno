@@ -51,6 +51,9 @@ namespace recepTour.Controllers
             ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", step.RecipeId);
             ViewData["StepNumber"] = step.StepNumber;
             TempData.Put("step", step);
+            List<string> steps = new List<string>();
+            steps = _context.RecipeSteps.Where(c => c.RecipeId == step.RecipeId).Select(c => c.Description).ToList();
+            ViewData["steps"] = steps;
             return View(step);
         }
 
@@ -86,14 +89,7 @@ namespace recepTour.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Continue([Bind("Id,StepNumber,RecipeId,Description")] RecipeStep recipeStep)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(recipeStep);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Create", "RecipeGroceries");
-            }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeStep.RecipeId);
-            return View(recipeStep);
+            return RedirectToAction("Create", "RecipeGroceries");
         }
 
         // GET: RecipeSteps/Edit/5

@@ -14,12 +14,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StepNumber" class="control-label"></label>
-                <input asp-for="StepNumber"asp-items="ViewBag.StepNum" class="form-control" style="pointer-events: none;" />
+                <input asp-for="StepNumber" asp-items="ViewBag.StepNum" class="form-control" style="pointer-events: none;" />
                 <span asp-validation-for="StepNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RecipeId" class="control-label"></label>
-                <input asp-for="RecipeId" class ="form-control" asp-items="ViewBag.RecipeId" style="pointer-events: none;"></input>
+                <input asp-for="RecipeId" class="form-control" asp-items="ViewBag.RecipeId" style="pointer-events: none;"></input>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
@@ -31,13 +31,22 @@
                 <input type="submit" value="Continue" class="btn btn-primary" formaction=@Url.Action("Continue") formmethod="post" />
             </div>
         </form>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
     </div>
-</div>
+    <div class="col-md-4">
+        <ol id="steps">
+            @if (ViewData["steps"] != null)
+            {
+                @foreach (var item in ViewData["steps"] as List<String>)
+                {
+                    <li>@item</li>
+                }
+            }
+        </ol>
+    </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
