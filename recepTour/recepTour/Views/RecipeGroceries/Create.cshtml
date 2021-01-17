@@ -14,11 +14,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="RecipeId" class="control-label"></label>
-                <select asp-for="RecipeId" class ="form-control" asp-items="ViewBag.RecipeId"></select>
+                <select asp-for="RecipeId" class="form-control" asp-items="ViewBag.RecipeId" style="pointer-events: none;"></select>
             </div>
             <div class="form-group">
-                <label asp-for="GroceryId" class="control-label"></label>
-                <select asp-for="GroceryId" class ="form-control" asp-items="ViewBag.GroceryId"></select>
+                <label asp-for="GroceryId" class="control-label">Grocery</label>
+                <select asp-for="GroceryId" class="form-control" asp-items="ViewBag.GroceryId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Amount" class="control-label"></label>
@@ -26,10 +26,12 @@
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Add another grocery" class="btn btn-primary" formaction=@Url.Action("Create") formmethod="post" />
+                <input type="submit" value="Continue" class="btn btn-primary" formaction=@Url.Action("Continue") formmethod="post" />
             </div>
         </form>
     </div>
+
 </div>
 
 <div>

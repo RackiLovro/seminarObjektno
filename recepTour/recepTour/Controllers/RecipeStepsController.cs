@@ -89,6 +89,9 @@ namespace recepTour.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Continue([Bind("Id,StepNumber,RecipeId,Description")] RecipeStep recipeStep)
         {
+            RecipeGrocery grocery = new RecipeGrocery();
+            grocery.RecipeId = (int)recipeStep.RecipeId;
+            TempData.Put("grocery", grocery);
             return RedirectToAction("Create", "RecipeGroceries");
         }
 
