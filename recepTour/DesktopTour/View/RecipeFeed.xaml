@@ -1,0 +1,19 @@
+﻿<Window x:Class="DesktopTour.View.RecipeFeed"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopTour.View"
+        mc:Ignorable="d"
+        Title="Recipe Feed" Height="450" Width="800">
+    <Grid>
+        <ListView Name="recipeList">
+            <ListView.View>
+                <GridView x:Name="grdActivity">
+                    <GridViewColumn Width="Auto" Header="Recipe title"/>
+                    <GridViewColumn Width="Auto" Header="See Details"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
