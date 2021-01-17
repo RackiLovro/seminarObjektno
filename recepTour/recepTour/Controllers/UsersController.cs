@@ -24,8 +24,8 @@ namespace recepTour.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.Users.Include(u => u.UserType);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var users = _context.Users.Include(u => u.UserType);
+            return View(await users.ToListAsync());
         }
 
         // GET: Users/Details/5
