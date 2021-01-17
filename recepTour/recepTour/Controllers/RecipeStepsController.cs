@@ -48,7 +48,7 @@ namespace recepTour.Controllers
         public IActionResult Create()
         {
             RecipeStep step = TempData.Get<RecipeStep>("step");
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", step.RecipeId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", step.RecipeId);
             ViewData["StepNumber"] = step.StepNumber;
             TempData.Put("step", step);
             List<string> steps = new List<string>();
@@ -80,7 +80,7 @@ namespace recepTour.Controllers
                 TempData.Put("step", step);
                 return RedirectToAction("Create", "RecipeSteps");
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeStep.RecipeId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
             return View(recipeStep);
         }
 
@@ -108,7 +108,7 @@ namespace recepTour.Controllers
             {
                 return NotFound();
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeStep.RecipeId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
             return View(recipeStep);
         }
 
@@ -144,7 +144,7 @@ namespace recepTour.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeStep.RecipeId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
             return View(recipeStep);
         }
 

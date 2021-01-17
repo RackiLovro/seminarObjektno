@@ -86,7 +86,7 @@ namespace recepTour.Controllers
             {
                 return NotFound();
             }
-            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "DiffLevel", recipe.DiffLevelId);
+            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description", recipe.DiffLevelId);
             return View(recipe);
         }
 
@@ -122,7 +122,7 @@ namespace recepTour.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "DiffLevel", recipe.DiffLevelId);
+            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description", recipe.DiffLevelId);
             return View(recipe);
         }
 

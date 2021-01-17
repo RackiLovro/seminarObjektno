@@ -72,7 +72,25 @@ namespace recepTour.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(recipeGrocery);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateException) {
+                    ModelState.AddModelError("", "Grocery is already in the recipe!");
+                    RecipeGrocery grocery = TempData.Get<RecipeGrocery>("grocery");
+                    ViewData["GroceryId"] = new SelectList(_context.Groceries, "Id", "Name");
+                    ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", grocery.RecipeId);
+                    TempData.Put("grocery", grocery);
+                    var groceries = from groc in _context.Groceries join recgroc in _context.RecipeGroceries on groc.Id equals recgroc.GroceryId where recgroc.RecipeId == grocery.RecipeId select new { groc.Name, recgroc.Amount };
+                    List<String> temp = new List<String>();
+                    foreach (var g in groceries)
+                    {
+                        temp.Add(g.Amount + " " + g.Name);
+                    }
+                    ViewData["groceries"] = temp;
+                    return View(recipeGrocery);
+                }
                 return RedirectToAction("Create", "RecipeGroceries");
             }
             ViewData["GroceryId"] = new SelectList(_context.Groceries, "Id", "Name", recipeGrocery.GroceryId);
