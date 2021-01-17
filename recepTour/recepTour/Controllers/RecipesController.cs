@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using recepTour.Models;
 
 namespace recepTour.Controllers
@@ -53,7 +54,7 @@ namespace recepTour.Controllers
         // GET: Recipes/Create
         public IActionResult Create()
         {
-            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "DiffLevel");
+            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description");
             return View();
         }
 
@@ -68,9 +69,13 @@ namespace recepTour.Controllers
             {
                 _context.Add(recipe);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                RecipeStep step = new RecipeStep();
+                step.RecipeId = recipe.Id;
+                step.StepNumber = 1;
+                TempData.Put("step", step);
+                return RedirectToAction("Create", "RecipeSteps");
             }
-            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "DiffLevel", recipe.DiffLevelId);
+            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description", recipe.DiffLevelId);
             return View(recipe);
         }
 
@@ -87,7 +92,7 @@ namespace recepTour.Controllers
             {
                 return NotFound();
             }
-            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "DiffLevel", recipe.DiffLevelId);
+            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description", recipe.DiffLevelId);
             return View(recipe);
         }
 
@@ -123,7 +128,7 @@ namespace recepTour.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "DiffLevel", recipe.DiffLevelId);
+            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description", recipe.DiffLevelId);
             return View(recipe);
         }
 
@@ -161,5 +166,22 @@ namespace recepTour.Controllers
         {
             return _context.Recipes.Any(e => e.Id == id);
         }
+    }
+}
+
+
+
+public static class TempDataExtensions
+{
+    public static void Put<T>(this Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary tempData, string key, T value) where T : class
+    {
+        tempData[key] = JsonConvert.SerializeObject(value);
+    }
+
+    public static T Get<T>(this Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary tempData, string key) where T : class
+    {
+        object o;
+        tempData.TryGetValue(key, out o);
+        return o == null ? null : JsonConvert.DeserializeObject<T>((string)o);
     }
 }
