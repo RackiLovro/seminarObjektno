@@ -21,8 +21,8 @@ namespace recepTour.Controllers
         // GET: RecipeSteps
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.RecipeSteps.Include(r => r.Recipe);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var steps = _context.RecipeSteps.Include(r => r.Recipe);
+            return View(await steps.ToListAsync());
         }
 
         // GET: RecipeSteps/Details/5
@@ -44,12 +44,25 @@ namespace recepTour.Controllers
             return View(recipeStep);
         }
 
-        // GET: RecipeSteps/Create
+
         public IActionResult Create()
         {
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id");
-            return View();
+            RecipeStep step = TempData.Get<RecipeStep>("step");
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", step.RecipeId);
+            ViewData["StepNumber"] = step.StepNumber;
+            TempData.Put("step", step);
+            List<string> steps = new List<string>();
+            steps = _context.RecipeSteps.Where(c => c.RecipeId == step.RecipeId).Select(c => c.Description).ToList();
+            ViewData["steps"] = steps;
+            return View(step);
         }
+
+        //// GET: RecipeSteps/Create
+        //public IActionResult Create()
+        //{
+        //    ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id");
+        //    return View();
+        //}
 
         // POST: RecipeSteps/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -62,10 +75,24 @@ namespace recepTour.Controllers
             {
                 _context.Add(recipeStep);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                RecipeStep step = TempData.Get<RecipeStep>("step");
+                step.StepNumber++;
+                TempData.Put("step", step);
+                return RedirectToAction("Create", "RecipeSteps");
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeStep.RecipeId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
             return View(recipeStep);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Continue([Bind("Id,StepNumber,RecipeId,Description")] RecipeStep recipeStep)
+        {
+            RecipeGrocery grocery = new RecipeGrocery();
+            grocery.RecipeId = (int)recipeStep.RecipeId;
+            TempData.Put("grocery", grocery);
+            return RedirectToAction("Create", "RecipeGroceries");
         }
 
         // GET: RecipeSteps/Edit/5
@@ -81,7 +108,7 @@ namespace recepTour.Controllers
             {
                 return NotFound();
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeStep.RecipeId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
             return View(recipeStep);
         }
 
@@ -117,7 +144,7 @@ namespace recepTour.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeStep.RecipeId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
             return View(recipeStep);
         }
 

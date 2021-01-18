@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace recepTour.Models
 {
-    public partial class RecepTourContext : DbContext
+    public partial class RecepTourContext : IdentityDbContext
     {
         public RecepTourContext()
         {
@@ -40,6 +41,7 @@ namespace recepTour.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.HasAnnotation("Relational:Collation", "en_US.UTF-8");
 
             modelBuilder.Entity<Grocery>(entity =>

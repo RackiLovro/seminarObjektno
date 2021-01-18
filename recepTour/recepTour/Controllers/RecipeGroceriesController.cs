@@ -21,8 +21,8 @@ namespace recepTour.Controllers
         // GET: RecipeGroceries
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.RecipeGroceries.Include(r => r.Grocery).Include(r => r.Recipe);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var recipeGroceries = _context.RecipeGroceries.Include(r => r.Grocery).Include(r => r.Recipe);
+            return View(await recipeGroceries.ToListAsync());
         }
 
         // GET: RecipeGroceries/Details/5
@@ -48,9 +48,18 @@ namespace recepTour.Controllers
         // GET: RecipeGroceries/Create
         public IActionResult Create()
         {
-            ViewData["GroceryId"] = new SelectList(_context.Groceries, "Id", "Id");
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id");
-            return View();
+            RecipeGrocery grocery = TempData.Get<RecipeGrocery>("grocery");
+            ViewData["GroceryId"] = new SelectList(_context.Groceries, "Id", "Name");
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", grocery.RecipeId);
+            TempData.Put("grocery", grocery);
+            var groceries = from groc in _context.Groceries join recgroc in _context.RecipeGroceries on groc.Id equals recgroc.GroceryId where recgroc.RecipeId == grocery.RecipeId select new {groc.Name, recgroc.Amount };
+            List<String> temp = new List<String>();
+            foreach(var g in groceries)
+            {
+                temp.Add(g.Amount +" " + g.Name);
+            }
+            ViewData["groceries"] = temp;
+            return View(grocery);
         }
 
         // POST: RecipeGroceries/Create
@@ -63,12 +72,38 @@ namespace recepTour.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(recipeGrocery);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateException) {
+                    ModelState.AddModelError("", "Grocery is already in the recipe!");
+                    RecipeGrocery grocery = TempData.Get<RecipeGrocery>("grocery");
+                    ViewData["GroceryId"] = new SelectList(_context.Groceries, "Id", "Name");
+                    ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", grocery.RecipeId);
+                    TempData.Put("grocery", grocery);
+                    var groceries = from groc in _context.Groceries join recgroc in _context.RecipeGroceries on groc.Id equals recgroc.GroceryId where recgroc.RecipeId == grocery.RecipeId select new { groc.Name, recgroc.Amount };
+                    List<String> temp = new List<String>();
+                    foreach (var g in groceries)
+                    {
+                        temp.Add(g.Amount + " " + g.Name);
+                    }
+                    ViewData["groceries"] = temp;
+                    return View(recipeGrocery);
+                }
+                return RedirectToAction("Create", "RecipeGroceries");
             }
-            ViewData["GroceryId"] = new SelectList(_context.Groceries, "Id", "Id", recipeGrocery.GroceryId);
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", recipeGrocery.RecipeId);
+            ViewData["GroceryId"] = new SelectList(_context.Groceries, "Id", "Name", recipeGrocery.GroceryId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeGrocery.RecipeId);
             return View(recipeGrocery);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Continue([Bind("RecipeId,GroceryId,Amount")] RecipeGrocery recipeGrocery)
+        {
+            return RedirectToAction("Create", "Pictures");
         }
 
         // GET: RecipeGroceries/Edit/5

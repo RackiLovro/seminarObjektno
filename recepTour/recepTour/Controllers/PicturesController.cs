@@ -21,8 +21,8 @@ namespace recepTour.Controllers
         // GET: Pictures
         public async Task<IActionResult> Index()
         {
-            var d3jgof5caojknsContext = _context.Pictures.Include(p => p.Recipe);
-            return View(await d3jgof5caojknsContext.ToListAsync());
+            var pictures = _context.Pictures.Include(p => p.Recipe);
+            return View(await pictures.ToListAsync());
         }
 
         // GET: Pictures/Details/5
