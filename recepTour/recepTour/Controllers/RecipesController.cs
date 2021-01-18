@@ -58,6 +58,15 @@ namespace recepTour.Controllers
             return View();
         }
 
+        // GET: Recipes/My/userId
+        public async Task<IActionResult> My(int? userId)
+        {
+            var recipes = from r in _context.Recipes join ur in _context.UserRecipes on r.Id equals ur.RecipeId where ur.UserId == userId select r;
+
+            return View(await recipes.ToListAsync());
+        }
+
+
         // POST: Recipes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

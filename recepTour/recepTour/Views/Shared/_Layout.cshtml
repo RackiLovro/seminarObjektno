@@ -33,15 +33,18 @@
                     </ul>
                 </div>
                 <ul class="navbar-nav flex-grow-1 justify-content-end">
-                    
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a class="nav-link text-dark" method="post" asp-action="Logout" asp-controller="Users">
-                                Logout @User.Identity.Name
-                            </a>
-                        }
-                        else
-                        {
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link text-dark" method="get" asp-action="My" asp-controller="Recipes" asp-route-id="@userManager.FindByNameAsync(User.Identity.Name).Result.Id">
+                            My recipes
+                        </a>
+                        <a class="nav-link text-dark" method="post" asp-action="Logout" asp-controller="Users">
+                            Logout @User.Identity.Name
+                        </a>
+                    }
+                    else
+                    {
                         <li class="nav-item">
                             <a class="nav-link text-dark" method="post" asp-action="Registration" asp-controller="Users">
                                 Register
@@ -52,7 +55,7 @@
                                 Login
                             </a>
                         </li>
-                        }
+                    }
                 </ul>
 </div>
 </nav>
