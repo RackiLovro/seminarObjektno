@@ -103,7 +103,7 @@ namespace recepTour.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Continue([Bind("RecipeId,GroceryId,Amount")] RecipeGrocery recipeGrocery)
         {
-            return RedirectToAction("Create", "Pictures");
+            return RedirectToAction("Create", "UserRecipes", recipeGrocery);
         }
 
         // GET: RecipeGroceries/Edit/5

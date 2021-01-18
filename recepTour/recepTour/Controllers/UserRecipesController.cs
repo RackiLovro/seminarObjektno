@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,12 @@ namespace recepTour.Controllers
     public class UserRecipesController : Controller
     {
         private readonly RecepTourContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public UserRecipesController(RecepTourContext context)
+        public UserRecipesController(RecepTourContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: UserRecipes
@@ -46,11 +49,14 @@ namespace recepTour.Controllers
         }
 
         // GET: UserRecipes/Create
-        public IActionResult Create()
+        public IActionResult Create([Bind("RecipeId,GroceryId,Amount")] RecipeGrocery recipeGrocery)
         {
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            UserRecipe usrp = new UserRecipe();
+            usrp.RecipeId = recipeGrocery.RecipeId;
+            usrp.UserId = Convert.ToInt32(_userManager.FindByNameAsync(User.Identity.Name).Result.Id);
+            _context.Add(usrp);
+            _context.SaveChanges();
+            return RedirectToAction("Create","Pictures");
         }
 
         // POST: UserRecipes/Create
