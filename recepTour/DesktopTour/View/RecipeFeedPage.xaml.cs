@@ -36,5 +36,13 @@ namespace DesktopTour.View
 
             this.NavigationService.Navigate(recipeDetailPage);
         }
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            HomePage homePage = new HomePage();
+
+            this.NavigationService.Navigate(homePage);
+        }
     }
 }

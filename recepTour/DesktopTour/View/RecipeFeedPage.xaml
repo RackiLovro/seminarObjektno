@@ -12,14 +12,13 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <ListView Name="recipeList" Grid.ColumnSpan="3" ItemsSource="{Binding Recipes}">
+        <ListView Name="recipeList" Grid.ColumnSpan="2" ItemsSource="{Binding Recipes}">
             <ListView.View>
                 <GridView x:Name="grdActivity">
                     <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
@@ -28,6 +27,8 @@
             </ListView.View>
         </ListView>
 
-        <Button Tag="{Binding ElementName=recipeList, Path=SelectedItem}" Click="Details" Content="Recipe details" Grid.Column="1" Grid.Row="3"/>
+        <Button Tag="{Binding ElementName=recipeList, Path=SelectedItem}" Click="Details" Content="Recipe details" Grid.Column="0" Grid.Row="2"/>
+
+        <Button Click="Back" Content="Back" Grid.Column="1" Grid.Row="2"/>
     </Grid>
 </Page>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopTour.View"
         mc:Ignorable="d"
-        Title="Homepage" Height="450" Width="800" Source="HomePage.xaml">
+        Title="Homepage" Height="450" Width="800" Source="HomePage.xaml"
+                   ShowsNavigationUI="False">
     
 </NavigationWindow>
