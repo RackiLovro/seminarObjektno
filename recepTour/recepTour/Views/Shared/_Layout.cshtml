@@ -21,14 +21,15 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated) { 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" method="get" asp-action="Create" asp-controller="Recipes">
+                                    Create a recipe
+                                </a>
+                            </li>
+                         }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Index">Recipes</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Index">All recipes</a>
                         </li>
                     </ul>
                 </div>
@@ -36,18 +37,13 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" method="get" asp-action="Create" asp-controller="Recipes" >
-                                Create a recipe
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" method="get" asp-action="My" asp-controller="Recipes" asp-route-userId="@userManager.FindByNameAsync(User.Identity.Name).Result.Id">
                                 My recipes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" method="get" asp-action="Favorites" asp-controller="UserFavorites" asp-route-id="@userManager.FindByNameAsync(User.Identity.Name).Result.Id">
-                                My favorites
+                               Favorites
                             </a>
                         </li>
                         <li class="nav-item">
