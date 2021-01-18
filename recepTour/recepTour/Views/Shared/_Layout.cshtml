@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> signInManager;
+@inject UserManager<IdentityUser> userManager;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,15 +28,34 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Registration">Registration</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Index">Recipes</a>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
+                <ul class="navbar-nav flex-grow-1 justify-content-end">
+                    
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link text-dark" method="post" asp-action="Logout" asp-controller="Users">
+                                Logout @User.Identity.Name
+                            </a>
+                        }
+                        else
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" method="post" asp-action="Registration" asp-controller="Users">
+                                Register
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" method="post" asp-action="Login" asp-controller="Users">
+                                Login
+                            </a>
+                        </li>
+                        }
+                </ul>
+</div>
+</nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
