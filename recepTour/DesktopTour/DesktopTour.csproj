@@ -332,35 +332,42 @@
     <Compile Include="Models\UserFavorite.cs" />
     <Compile Include="Models\UserRecipe.cs" />
     <Compile Include="Models\UserType.cs" />
-    <Compile Include="View\Homepage.xaml.cs">
-      <DependentUpon>Homepage.xaml</DependentUpon>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\RecipeDetail.xaml.cs">
-      <DependentUpon>RecipeDetail.xaml</DependentUpon>
+    <Compile Include="View\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RecipeFeed.xaml.cs">
-      <DependentUpon>RecipeFeed.xaml</DependentUpon>
+    <Compile Include="View\RecipeDetailPage.xaml.cs">
+      <DependentUpon>RecipeDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchRecipes.xaml.cs">
-      <DependentUpon>SearchRecipes.xaml</DependentUpon>
+    <Compile Include="View\RecipeFeedPage.xaml.cs">
+      <DependentUpon>RecipeFeedPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\Homepage.xaml">
+    <Compile Include="View\SearchRecipesPage.xaml.cs">
+      <DependentUpon>SearchRecipesPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RecipeDetail.xaml">
+    <Page Include="View\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RecipeFeed.xaml">
+    <Page Include="View\RecipeDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SearchRecipes.xaml">
+    <Page Include="View\RecipeFeedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SearchRecipesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

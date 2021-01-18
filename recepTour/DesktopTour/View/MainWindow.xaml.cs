@@ -12,29 +12,33 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DesktopTour.Models;
 
 namespace DesktopTour.View
 {
     /// <summary>
-    /// Interaction logic for SearchPage.xaml
+    /// Interaction logic for Homepage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class MainWindow : NavigationWindow
     {
-        public HomePage()
+        public MainWindow()
         {
             InitializeComponent();
+            lovroide();
         }
 
-        private void Search(object sender, RoutedEventArgs e)
+        public MainWindow(bool contentLoaded)
         {
-            SearchRecipesPage searchRecipesPage = new SearchRecipesPage();
-            this.NavigationService.Navigate(searchRecipesPage);
+            _contentLoaded = contentLoaded;
         }
 
-        private void Feed(object sender, RoutedEventArgs e)
+        public void lovroide()
         {
-            RecipeFeedPage recipeFeedPage = new RecipeFeedPage();
-            this.NavigationService.Navigate(recipeFeedPage);
+            var lovro = new DesktopTourContext();
+
+            var luka = lovro.Recipes.ToList().Select(e => e.Title);
+
+            var luka1 = "lovro";
         }
     }
 }

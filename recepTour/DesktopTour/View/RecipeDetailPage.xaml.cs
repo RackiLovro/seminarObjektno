@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DesktopTour.View
 {
     /// <summary>
-    /// Interaction logic for RecipeDetail.xaml
+    /// Interaction logic for RecipeDetailPage.xaml
     /// </summary>
-    public partial class RecipeDetail : Window
+    public partial class RecipeDetailPage : Page
     {
-        public RecipeDetail()
+        public RecipeDetailPage()
         {
             InitializeComponent();
         }
