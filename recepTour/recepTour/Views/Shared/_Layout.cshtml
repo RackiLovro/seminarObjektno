@@ -36,9 +36,14 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                        <a class="nav-link text-dark" method="get" asp-action="My" asp-controller="Recipes" asp-route-userId="@userManager.FindByNameAsync(User.Identity.Name).Result.Id">
-                            My recipes
-                        </a>
+                            <a class="nav-link text-dark" method="get" asp-action="Create" asp-controller="Recipes" >
+                                Create a recipe
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" method="get" asp-action="My" asp-controller="Recipes" asp-route-userId="@userManager.FindByNameAsync(User.Identity.Name).Result.Id">
+                                My recipes
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" method="get" asp-action="Favorites" asp-controller="UserFavorites" asp-route-id="@userManager.FindByNameAsync(User.Identity.Name).Result.Id">
@@ -55,9 +60,9 @@
                                 Logout
                             </a>
                         </li>
-                    }
-                    else
-                    {
+                        }
+                        else
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" method="post" asp-action="Registration" asp-controller="Users">
                                 Register
@@ -68,8 +73,8 @@
                                 Login
                             </a>
                         </li>
-                    }
-                </ul>
+                        }
+                    </ul>
 </div>
 </nav>
     </header>
