@@ -28,7 +28,7 @@ namespace recepTour.Controllers
             {
                 recipes = recipes.Where(r => r.Title.Contains(searchString));
             }
-
+            recipes = recipes.Include(r => r.DiffLevel);
             return View(await recipes.ToListAsync());
         }
 
@@ -62,7 +62,7 @@ namespace recepTour.Controllers
         public async Task<IActionResult> My(int? userId)
         {
             var recipes = from r in _context.Recipes join ur in _context.UserRecipes on r.Id equals ur.RecipeId where ur.UserId == userId select r;
-
+            recipes = recipes.Include(r => r.DiffLevel);
             return View(await recipes.ToListAsync());
         }
 
