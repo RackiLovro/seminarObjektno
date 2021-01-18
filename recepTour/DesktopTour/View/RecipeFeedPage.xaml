@@ -18,12 +18,12 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        
-        <ListView Name="recipeList" Grid.ColumnSpan="3">
+
+        <ListView Name="recipeList" Grid.ColumnSpan="3" ItemsSource="{Binding Recipes}">
             <ListView.View>
                 <GridView x:Name="grdActivity">
-                    <GridViewColumn Width="Auto" Header="Recipe title"/>
-                    <GridViewColumn Width="Auto" Header="Recipe difficulty"/>
+                    <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DiffLevelId}"/>
                 </GridView>
             </ListView.View>
         </ListView>

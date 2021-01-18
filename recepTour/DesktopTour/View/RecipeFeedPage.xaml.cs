@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopTour.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace DesktopTour.View
         public RecipeFeedPage()
         {
             InitializeComponent();
+            RecipeFeedViewModel recipeFeedViewModel = new RecipeFeedViewModel();
+            this.DataContext = recipeFeedViewModel;
         }
 
         private void Details(object sender, RoutedEventArgs e)
