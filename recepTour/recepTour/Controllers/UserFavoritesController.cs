@@ -25,6 +25,13 @@ namespace recepTour.Controllers
             return View(await userFavorites.ToListAsync());
         }
 
+        // GET: UserFavorites/userId
+        public async Task<IActionResult> Favorites(int? id)
+        {
+            var userFavorites = _context.UserFavorites.Where(uf => uf.UserId == id).Include(uf => uf.Recipe);
+            return View(await userFavorites.ToListAsync());
+        }
+
         // GET: UserFavorites/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -126,6 +133,7 @@ namespace recepTour.Controllers
             return View(userFavorite);
         }
 
+        /*
         // GET: UserFavorites/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -144,17 +152,19 @@ namespace recepTour.Controllers
             }
 
             return View(userFavorite);
-        }
+        }*/
 
-        // POST: UserFavorites/Delete/5
+        // GET: UserFavorites/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(string? userId, string? recipeId)
         {
-            var userFavorite = await _context.UserFavorites.FindAsync(id);
+            int userIdInt = Int32.Parse(userId);
+            int recipeIdInt = Int32.Parse(recipeId);
+            var userFavorite = await _context.UserFavorites.Where(uf => uf.UserId == userIdInt && uf.RecipeId == recipeIdInt).FirstOrDefaultAsync();
             _context.UserFavorites.Remove(userFavorite);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Favorites", "UserFavorites", new { id = userIdInt});
         }
 
         private bool UserFavoriteExists(int id)
