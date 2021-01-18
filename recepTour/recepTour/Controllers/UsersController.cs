@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
@@ -15,10 +16,14 @@ namespace recepTour.Controllers
     public class UsersController : Controller
     {
         private readonly RecepTourContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public UsersController(RecepTourContext context)
+        public UsersController(RecepTourContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: Users
@@ -54,7 +59,7 @@ namespace recepTour.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Registration(UserRegistration uc)
+        public async Task<IActionResult> RegistrationAsync(UserRegistration uc)
         {
             User user = new User();
             user.Nickname = uc.Nickname;
@@ -66,7 +71,9 @@ namespace recepTour.Controllers
             _context.Add(user);
             try
             {
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                var u = new IdentityUser { UserName = uc.Email, Email = uc.Email };
+                var result = await _userManager.CreateAsync(u, uc.Password);
             }
             catch (DbUpdateException ex)
             {
@@ -78,6 +85,36 @@ namespace recepTour.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, false);
+
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            }
+
+            return View(model);
+        }
 
         public static string EncodePasswordMd5(string pass) //Encrypt using MD5    
         {
