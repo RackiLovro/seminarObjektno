@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopTour.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,18 @@ namespace DesktopTour.View
     /// </summary>
     public partial class RecipeDetailPage : Page
     {
-        public RecipeDetailPage()
+        public RecipeDetailPage(Recipe recipe)
         {
             InitializeComponent();
+            this.DataContext = new RecipeDetailsViewModel(recipe);
+        }
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            RecipeFeedPage recipeFeedPage = new RecipeFeedPage();
+
+            this.NavigationService.Navigate(recipeFeedPage);
         }
     }
 }

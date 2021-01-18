@@ -23,11 +23,11 @@
             <ListView.View>
                 <GridView x:Name="grdActivity">
                     <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
-                    <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DiffLevelId}"/>
+                    <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <Button Click="Details" Content="Recipe details" Grid.Column="1" Grid.Row="3"/>
+        <Button Tag="{Binding ElementName=recipeList, Path=SelectedItem}" Click="Details" Content="Recipe details" Grid.Column="1" Grid.Row="3"/>
     </Grid>
 </Page>

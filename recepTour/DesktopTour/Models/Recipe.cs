@@ -17,7 +17,10 @@ namespace DesktopTour
         public int Id { get; set; }
         public string Title { get; set; }
         public int? DiffLevelId { get; set; }
-
+        public string DifficultyDescription
+        {
+            get { return DiffLevel.Description; }
+        }
         public virtual RecipeDifficulty DiffLevel { get; set; }
         public virtual ICollection<Picture> Pictures { get; set; }
         public virtual ICollection<RecipeGrocery> RecipeGroceries { get; set; }

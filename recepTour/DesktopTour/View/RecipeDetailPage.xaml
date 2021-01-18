@@ -9,6 +9,49 @@
       Title="RecipeDetailPage">
 
     <Grid>
-        <Label Content="Recipe details"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0" Content="{Binding Title}"/>
+        <Label Grid.Row="0" Grid.Column="1" Content="{Binding DifficultyDescription}"/>
+
+        <ListView Name="steps" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" ItemsSource="{Binding RecipeSteps}">
+            <ListView.View>
+                <GridView x:Name="gridSteps">
+                    <GridViewColumn Width="Auto" Header="Step number" DisplayMemberBinding="{Binding StepNumber}"/>
+                    <GridViewColumn Width="Auto" Header="Step description" DisplayMemberBinding="{Binding Description}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView Name="ingridients" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" ItemsSource="{Binding RecipeGroceries}">
+            <ListView.View>
+                <GridView x:Name="gridIngridients">
+                    <GridViewColumn Width="Auto" Header="Ingridient" DisplayMemberBinding="{Binding Ingridient}"/>
+                    <GridViewColumn Width="Auto" Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView Name="pictures" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView x:Name="gridPictures">
+                    <GridViewColumn Width="Auto" Header="Picture"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Click="Back" Content="Back" Grid.Column="3" Grid.Row="4"/>
     </Grid>
 </Page>

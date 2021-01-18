@@ -26,7 +26,7 @@ namespace DesktopTour.ViewModel
         {
             _context = new DesktopTourContext();
             _recipes = _context.Recipes.ToList();
-            var lovro = "lovro";
+            _recipes.ForEach(r => r.DiffLevel = _context.RecipeDifficulties.Where(rd => rd.DiffLevel == r.DiffLevelId).Single());
         }
         public List<Recipe> Recipes
         {

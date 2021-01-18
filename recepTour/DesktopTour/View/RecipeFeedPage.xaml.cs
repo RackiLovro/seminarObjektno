@@ -30,7 +30,10 @@ namespace DesktopTour.View
 
         private void Details(object sender, RoutedEventArgs e)
         {
-            RecipeDetailPage recipeDetailPage = new RecipeDetailPage();
+            var button = sender as Button;
+
+            RecipeDetailPage recipeDetailPage = new RecipeDetailPage((Recipe)button.Tag);
+
             this.NavigationService.Navigate(recipeDetailPage);
         }
     }
