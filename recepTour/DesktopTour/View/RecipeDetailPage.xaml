@@ -44,12 +44,12 @@
             </ListView.View>
         </ListView>
 
-        <ListView Name="pictures" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <ListView.View>
-                <GridView x:Name="gridPictures">
-                    <GridViewColumn Width="Auto" Header="Picture"/>
-                </GridView>
-            </ListView.View>
+        <ListView Name="pictures" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" ItemsSource="{Binding Pictures}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Url}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
 
         <Button Click="Back" Content="Back" Grid.Column="3" Grid.Row="4"/>
