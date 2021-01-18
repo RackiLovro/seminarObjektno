@@ -72,7 +72,8 @@ namespace recepTour.Controllers
             try
             {
                 await _context.SaveChangesAsync();
-                var u = new IdentityUser { UserName = uc.Email, Email = uc.Email };
+                var id = _context.Users.Where(u => u.Email.Equals(user.Email)).Select(u => u.Id).FirstOrDefault();
+                var u = new IdentityUser { UserName = uc.Email, Email = uc.Email, Id = id.ToString()};
                 var result = await _userManager.CreateAsync(u, uc.Password);
             }
             catch (DbUpdateException ex)
