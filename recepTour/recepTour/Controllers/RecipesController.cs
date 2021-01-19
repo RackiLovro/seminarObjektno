@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,12 @@ namespace recepTour.Controllers
     public class RecipesController : Controller
     {
         private readonly RecepTourContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public RecipesController(RecepTourContext context)
+        public RecipesController(RecepTourContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Recipes
@@ -54,8 +57,15 @@ namespace recepTour.Controllers
         // GET: Recipes/Create
         public IActionResult Create()
         {
-            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description");
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description");
+                return View();
+            }
+            else {
+                ModelState.AddModelError("", "You have to register if you want to add a recipe!");
+                return View();
+            }
         }
 
         // GET: Recipes/My/userId
@@ -91,18 +101,32 @@ namespace recepTour.Controllers
         // GET: Recipes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return NotFound();
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
+                int loggedUserId = Convert.ToInt32(_userManager.FindByNameAsync(User.Identity.Name).Result.Id);
+
+                if (_context.UserRecipes.Where(u => u.UserId == loggedUserId).Count() == 0)
+                {
+                    ModelState.AddModelError("", "You can't change details for a recipe you don't own!");
+                    return View();
+                }
+
+                var recipe = await _context.Recipes.FindAsync(id);
+                if (recipe == null)
+                {
+                    return NotFound();
+                }
+                ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description", recipe.DiffLevelId);
+                return View(recipe);
             }
 
-            var recipe = await _context.Recipes.FindAsync(id);
-            if (recipe == null)
-            {
-                return NotFound();
-            }
-            ViewData["DiffLevelId"] = new SelectList(_context.RecipeDifficulties, "DiffLevel", "Description", recipe.DiffLevelId);
-            return View(recipe);
+                            ModelState.AddModelError("", "Unauthorized action");
+                return View();
         }
 
         // POST: Recipes/Edit/5

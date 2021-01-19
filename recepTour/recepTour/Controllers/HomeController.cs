@@ -20,6 +20,11 @@ namespace recepTour.Controllers
 
         public IActionResult Index()
         {
+            string err = TempData.Get<String>("Err");
+            if (err != null)
+            {
+                ModelState.AddModelError("", err);
+            }
             return View();
         }
 

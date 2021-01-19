@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,12 @@ namespace recepTour.Controllers
     public class RecipeStepsController : Controller
     {
         private readonly RecepTourContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public RecipeStepsController(RecepTourContext context)
+        public RecipeStepsController(RecepTourContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: RecipeSteps
@@ -47,14 +50,21 @@ namespace recepTour.Controllers
 
         public IActionResult Create()
         {
-            RecipeStep step = TempData.Get<RecipeStep>("step");
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", step.RecipeId);
-            ViewData["StepNumber"] = step.StepNumber;
-            TempData.Put("step", step);
-            List<string> steps = new List<string>();
-            steps = _context.RecipeSteps.Where(c => c.RecipeId == step.RecipeId).Select(c => c.Description).ToList();
-            ViewData["steps"] = steps;
-            return View(step);
+            if (User.Identity.IsAuthenticated)
+            {
+                RecipeStep step = TempData.Get<RecipeStep>("step");
+                ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", step.RecipeId);
+                ViewData["StepNumber"] = step.StepNumber;
+                TempData.Put("step", step);
+                List<string> steps = new List<string>();
+                steps = _context.RecipeSteps.Where(c => c.RecipeId == step.RecipeId).Select(c => c.Description).ToList();
+                ViewData["steps"] = steps;
+                return View(step);
+            } else
+            {
+                ModelState.AddModelError("", "Unauthorized action");
+                return View();
+            }
         }
 
         //// GET: RecipeSteps/Create
@@ -98,18 +108,41 @@ namespace recepTour.Controllers
         // GET: RecipeSteps/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var recipeStep = await _context.RecipeSteps.FindAsync(id);
-            if (recipeStep == null)
-            {
-                return NotFound();
+                var recStep = await _context.RecipeSteps.
+                    Include(u => u.Recipe).
+                    FirstOrDefaultAsync(c => c.Id == id);
+                var rstep = recStep.RecipeId
+                var ida = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+
+                int loggedUserId = Convert.ToInt32(_userManager.FindByNameAsync(User.Identity.Name).Result.Id);
+                if (_context.UserRecipes
+                    .Where(m => m.UserId == loggedUserId)
+                    .Where(n => n.RecipeId == recStep.RecipeId)
+                    .Count() == 0){
+                    TempData.Put("Err", "You can't change details for a recipe you don't own!");
+                    return RedirectToAction("Index","Home");
+                }
+
+                var recipeStep = await _context.RecipeSteps.FindAsync(id);
+                if (recipeStep == null)
+                {
+                    return NotFound();
+                }
+                ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
+                return View(recipeStep);
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
-            return View(recipeStep);
+            else {
+                //TODO ovaj model error se izgubi
+                TempData.Put("Err", "Unauthorized action");
+                return RedirectToAction("Index","Home");
+            }
         }
 
         // POST: RecipeSteps/Edit/5
@@ -144,27 +177,46 @@ namespace recepTour.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
-            return View(recipeStep);
+            ModelState.AddModelError("", "Unauthorized action");
+            return View();
         }
 
         // GET: RecipeSteps/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var recipeStep = await _context.RecipeSteps
-                .Include(r => r.Recipe)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (recipeStep == null)
+                var recipeStep = await _context.RecipeSteps.
+                   Include(u => u.Recipe).
+                   FirstOrDefaultAsync(c => c.Id == id);
+                int loggedUserId = Convert.ToInt32(_userManager.FindByNameAsync(User.Identity.Name).Result.Id);
+
+                if (_context.UserRecipes
+                    .Where(m => m.UserId == loggedUserId)
+                    .Where(n => n.RecipeId == recipeStep.RecipeId)
+                    .Count() == 0)
+                {
+                    ModelState.AddModelError("", "You can't change details for a recipe you don't own!");
+                    return View();
+                }
+
+                if (recipeStep == null)
+                {
+                    return NotFound();
+                }
+
+                return View(recipeStep);
+            } else
             {
-                return NotFound();
+                //TODO ovaj model error se izgubi
+                ModelState.AddModelError("", "Unauthorized action");
+                return RedirectToAction("Index", "Home");
             }
-
-            return View(recipeStep);
         }
 
         // POST: RecipeSteps/Delete/5
