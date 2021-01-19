@@ -17,27 +17,29 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <TreeView Grid.Row="0" Grid.Column="1">
-                        <CheckBox Content="milk produce"/>
-                        <TreeViewItem>
-                            <CheckBox Content="milk"/>
-                            <CheckBox Content="zogurt"/>
-                        </TreeViewItem>
-                        <CheckBox Content="cereal"/>
-                        <CheckBox Content="spices"/>
-                        <TreeViewItem>
-                            <CheckBox Content="salt"/>
-                            <CheckBox Content="pepper"/>
-                        </TreeViewItem>
-                    </TreeView>
+                    <ListBox Name="checkboxGrocery" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Groceries}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Name}" IsChecked="{Binding IncludeGrocery}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
-                    <Button Content="Search" Grid.Column="1" Grid.Row="1"/>
+                    <ListView Name="groceryList" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2" ItemsSource="{Binding Recipes}">
+                        <ListView.View>
+                            <GridView x:Name="grdGrocery">
+                                <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
+                                <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </TabItem>
             <TabItem Header="Titles" DataContext="{Binding TitleSearch}">
@@ -97,6 +99,22 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Back">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Click="Back" Content="Back to homepage" Grid.Column="1" Grid.Row="1"/>
                 </Grid>
             </TabItem>
         </TabControl>

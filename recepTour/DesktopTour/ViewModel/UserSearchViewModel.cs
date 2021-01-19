@@ -15,12 +15,8 @@ namespace DesktopTour.ViewModel
     {
         private string _searchText;
         private ObservableCollection<Recipe> _recipes;
-        private readonly DesktopTourContext _context;
-        public UserSearchViewModel()
-        {
-            _context = new DesktopTourContext();
+        private readonly DesktopTourContext _context = new DesktopTourContext();
 
-        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string info)
@@ -37,9 +33,10 @@ namespace DesktopTour.ViewModel
                 if (_userSearch == null) _userSearch = new RelayCommand(o =>
                 {
                     var username = o as string;
+
                     var recipes = from r in _context.Recipes
                                   join ur in _context.UserRecipes on r.Id equals ur.RecipeId
-                                  where ur.User.Nickname.Contains(username)
+                                  where ur.User.Nickname.ToLower().Contains(username.ToLower())
                                   select new Recipe
                                   {
                                       Id = r.Id,

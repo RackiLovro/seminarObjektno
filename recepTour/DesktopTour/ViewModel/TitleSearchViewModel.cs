@@ -15,13 +15,13 @@ namespace DesktopTour.ViewModel
     {
         private string _searchText;
         private ObservableCollection<Recipe> _recipes;
-        private readonly DesktopTourContext _context;
+        private readonly DesktopTourContext _context = new DesktopTourContext();
+
+        public event PropertyChangedEventHandler PropertyChanged;
         public TitleSearchViewModel()
         {
-            _context = new DesktopTourContext();
             _recipes = new ObservableCollection<Recipe>();
         }
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string info)
         {
@@ -36,8 +36,9 @@ namespace DesktopTour.ViewModel
             {
                 if (_titleSearch == null) _titleSearch = new RelayCommand(o =>
                 {
-                var title = o as string;
-                Recipes = new ObservableCollection<Recipe>(_context.Recipes.Where(r => r.Title.Contains(title)).ToList());
+                    var title = o as string;
+
+                    Recipes = new ObservableCollection<Recipe>(_context.Recipes.Where(r => r.Title.ToLower().Contains(title.ToLower())).ToList());
                 },
                     o => true
                     );

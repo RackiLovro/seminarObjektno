@@ -11,7 +11,7 @@ namespace DesktopTour.ViewModel
     class RecipeDetailsViewModel : INotifyPropertyChanged
     {
         private readonly Recipe _recipe;
-        private readonly DesktopTourContext _context;
+        private readonly DesktopTourContext _context = new DesktopTourContext();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -23,7 +23,6 @@ namespace DesktopTour.ViewModel
 
         public RecipeDetailsViewModel(object recipe)
         {
-            _context = new DesktopTourContext();
             _recipe = recipe as Recipe;
 
             _recipe.RecipeSteps = _context.RecipeSteps.Where(rs => rs.RecipeId == _recipe.Id).ToList();

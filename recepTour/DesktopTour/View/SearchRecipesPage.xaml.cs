@@ -25,18 +25,14 @@ namespace DesktopTour.View
         {
             InitializeComponent();
         }
-        /*
-        private void TitleSearch(object sender, RoutedEventArgs e)
+        private void Back(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            button.Command.Execute(button.CommandParameter);
 
-            RecipeFeedPage recipeFeedPage = new RecipeFeedPage();
-            RecipeFeedViewModel recipeFeedViewModel = new RecipeFeedViewModel(button.Tag as List<object>);
+            HomePage homePage = new HomePage();
 
-            recipeFeedPage.DataContext = recipeFeedViewModel;
-            this.NavigationService.Navigate(recipeFeedPage);
-        } */
+            this.NavigationService.Navigate(homePage);
+        }
     }
 
 }

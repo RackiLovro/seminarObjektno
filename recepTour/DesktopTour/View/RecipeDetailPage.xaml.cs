@@ -30,6 +30,8 @@ namespace DesktopTour.View
             var button = sender as Button;
 
             RecipeFeedPage recipeFeedPage = new RecipeFeedPage();
+            RecipeFeedViewModel recipeFeedViewModel = new RecipeFeedViewModel();
+            recipeFeedPage.DataContext = recipeFeedViewModel;
 
             this.NavigationService.Navigate(recipeFeedPage);
         }
