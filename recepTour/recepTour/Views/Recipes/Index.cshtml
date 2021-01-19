@@ -1,7 +1,13 @@
 ﻿@model IEnumerable<recepTour.ViewModels.RecipeViewModel>
+@inject UserManager<IdentityUser> userManager
+@inject RecepTourContext context
 
 @{
     ViewData["Title"] = "Index";
+    if(User.Identity.IsAuthenticated)
+    {
+        int userId = Int32.Parse(userManager.FindByNameAsync(User.Identity.Name).Result.Id);
+    }
 }
 
 <h1>Index</h1>
@@ -41,7 +47,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -60,7 +66,20 @@
                 }
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                int userId = Int32.Parse(userManager.FindByNameAsync(User.Identity.Name).Result.Id);
+                if (!context.UserFavorites.Any(uf => uf.UserId == userId && uf.RecipeId == item.Id))
+                {
+                    <td>
+                        <form asp-controller="UserFavorites" asp-action="Create" asp-route-userId="@userId" asp-route-recipeId="@item.Id" method="post">
+                            <input type="submit" value="Favorite" class="btn btn-primary form-inline" />
+                        </form>
+                    </td>
+                }
+            }
         </tr>
-}
+        }
     </tbody>
 </table>
