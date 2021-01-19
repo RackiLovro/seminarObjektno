@@ -1,4 +1,4 @@
-﻿@model IEnumerable<recepTour.Models.Recipe>
+﻿@model IEnumerable<recepTour.ViewModels.RecipeViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,9 +12,17 @@
 
 <form asp-controller="Recipes" asp-action="Index" method="get">
     <p>
-        Search by title: <input type="text" name="searchString" />
+        Search by title: <input type="text" name="title" />
         <input type="submit" value="Search" />
-        <input type="submit" asp-controller="Recipes" asp-action="Index" value="Reset" />
+        <input type="submit" asp-controller="Recipes" asp-action="AllRecipes"value="Reset" />
+    </p>
+</form>
+
+<form asp-controller="Recipes" asp-action="ByUser" method="get">
+    <p>
+        Search by user: <input type="text" name="userName" />
+        <input type="submit" value="Search" />
+        <input type="submit" asp-controller="Recipes" asp-action="AllRecipes" value="Reset" />
     </p>
 </form>
 
@@ -27,7 +35,9 @@
             <th>
                 Difficulty level
             </th>
-            <th></th>
+            <th>
+                User
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -37,7 +47,10 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DiffLevel.Description)
+                @Html.DisplayFor(modelItem => item.DiffLevelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User)
             </td>
             <td>
                 @if (User.Identity.IsAuthenticated)

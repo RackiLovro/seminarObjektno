@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using recepTour.Models;
+using recepTour.ViewModels;
 
 namespace recepTour.Controllers
 {
@@ -22,17 +23,59 @@ namespace recepTour.Controllers
             _userManager = userManager;
         }
 
-        // GET: Recipes
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> AllRecipes()
         {
-            var recipes = from r in _context.Recipes select r;
+            var recipes = from r in _context.Recipes
+                          join ur in _context.UserRecipes on r.Id equals ur.RecipeId
+                          select new RecipeViewModel
+                          {
+                              Id = r.Id,
+                              Title = r.Title,
+                              DiffLevelName = r.DiffLevel.Description,
+                              User = ur.User.Nickname
+                          };
 
-            if(!String.IsNullOrEmpty(searchString))
+            return View("Index", await recipes.ToListAsync());
+        }
+
+        // GET: Recipes
+        public async Task<IActionResult> Index(string title)
+        {
+            var recipes = from r in _context.Recipes join ur in _context.UserRecipes on r.Id equals ur.RecipeId
+                          select new RecipeViewModel
+                          {
+                              Id = r.Id,
+                              Title = r.Title,
+                              DiffLevelName = r.DiffLevel.Description,
+                              User = ur.User.Nickname
+                          };
+
+            if (!String.IsNullOrEmpty(title))
             {
-                recipes = recipes.Where(r => r.Title.Contains(searchString));
+                recipes = recipes.Where(r => r.Title.Contains(title));
             }
-            recipes = recipes.Include(r => r.DiffLevel);
             return View(await recipes.ToListAsync());
+        }
+
+        // GET: Recipes
+        public async Task<IActionResult> ByUser(string userName)
+        {
+            var recipes = from r in _context.Recipes
+                          join ur in _context.UserRecipes on r.Id equals ur.RecipeId
+                          select new RecipeViewModel
+                          {
+                              Id = r.Id,
+                              Title = r.Title,
+                              DiffLevelName = r.DiffLevel.Description,
+                              User = ur.User.Nickname
+                          };
+
+            if(!String.IsNullOrEmpty(userName))
+            {
+                //var userId = _context.Users.Where(u => userName.Equals(u.Nickname)).FirstOrDefaultAsync().Result.Id;
+                recipes = recipes.Where(r => r.User.Contains(userName));
+            }
+            return View("Index", await recipes.ToListAsync());
         }
 
         // GET: Recipes/Details/5
