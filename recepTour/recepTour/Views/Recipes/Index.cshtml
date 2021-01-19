@@ -55,14 +55,11 @@
             <td>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                } |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                @if (User.Identity.IsAuthenticated)
-                {
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                 }
-                </td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+            </td>
         </tr>
 }
     </tbody>
