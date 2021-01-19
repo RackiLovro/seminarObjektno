@@ -21,10 +21,9 @@ namespace DesktopTour.View
     /// </summary>
     public partial class RecipeDetailPage : Page
     {
-        public RecipeDetailPage(Recipe recipe)
+        public RecipeDetailPage()
         {
             InitializeComponent();
-            this.DataContext = new RecipeDetailsViewModel(recipe);
         }
         private void Back(object sender, RoutedEventArgs e)
         {

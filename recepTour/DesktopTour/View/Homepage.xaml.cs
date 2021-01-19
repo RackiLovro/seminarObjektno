@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopTour.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,12 +29,16 @@ namespace DesktopTour.View
         private void Search(object sender, RoutedEventArgs e)
         {
             SearchRecipesPage searchRecipesPage = new SearchRecipesPage();
+            SearchViewModel searchViewModel = new SearchViewModel();
+            searchRecipesPage.DataContext = searchViewModel;
             this.NavigationService.Navigate(searchRecipesPage);
         }
 
         private void Feed(object sender, RoutedEventArgs e)
         {
             RecipeFeedPage recipeFeedPage = new RecipeFeedPage();
+            RecipeFeedViewModel recipeFeedViewModel = new RecipeFeedViewModel();
+            recipeFeedPage.DataContext = recipeFeedViewModel;
             this.NavigationService.Navigate(recipeFeedPage);
         }
     }

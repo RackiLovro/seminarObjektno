@@ -21,14 +21,14 @@ namespace DesktopTour.ViewModel
             handler?.Invoke(this, new PropertyChangedEventArgs(info));
         }
 
-        public RecipeDetailsViewModel(Recipe recipe)
+        public RecipeDetailsViewModel(object recipe)
         {
             _context = new DesktopTourContext();
-            _recipe = recipe;
+            _recipe = recipe as Recipe;
 
             _recipe.RecipeSteps = _context.RecipeSteps.Where(rs => rs.RecipeId == _recipe.Id).ToList();
 
-            _recipe.RecipeGroceries = _context.RecipeGroceries.Where(rg => rg.RecipeId == recipe.Id).ToList();
+            _recipe.RecipeGroceries = _context.RecipeGroceries.Where(rg => rg.RecipeId == _recipe.Id).ToList();
             _recipe.RecipeGroceries.ToList().ForEach(rg => rg.Grocery = _context.Groceries.Where(g => g.Id == rg.GroceryId).Single());
 
             _recipe.Pictures = _context.Pictures.Where(p => p.RecipeId == _recipe.Id).ToList();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopTour.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,18 @@ namespace DesktopTour.View
         {
             InitializeComponent();
         }
+        /*
+        private void TitleSearch(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            button.Command.Execute(button.CommandParameter);
+
+            RecipeFeedPage recipeFeedPage = new RecipeFeedPage();
+            RecipeFeedViewModel recipeFeedViewModel = new RecipeFeedViewModel(button.Tag as List<object>);
+
+            recipeFeedPage.DataContext = recipeFeedViewModel;
+            this.NavigationService.Navigate(recipeFeedPage);
+        } */
     }
+
 }
