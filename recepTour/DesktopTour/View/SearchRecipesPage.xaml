@@ -56,12 +56,12 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Name="searchText" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
-                    <Button Command="{Binding TitleSearch}" CommandParameter="{Binding Text, ElementName=searchText}" Content="Search by title" Grid.Column="4" Grid.Row="0"/>
+                    <TextBox Name="searchTitle" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
+                    <Button Command="{Binding TitleSearch}" CommandParameter="{Binding Text, ElementName=searchTitle}" Content="Search by title" Grid.Column="4" Grid.Row="0"/>
 
-                    <ListView Name="recipeList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
+                    <ListView Name="titleList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
                         <ListView.View>
-                            <GridView x:Name="grdRecipe">
+                            <GridView x:Name="grdTitle">
                                 <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
                                 <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
                             </GridView>
@@ -80,14 +80,23 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
                         <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"></TextBox>
-                    <Button Content="Search by username" Grid.Column="2" Grid.Row="4"/>
+                    <TextBox Name="searchUser" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
+                    <Button Command="{Binding UserSearch}" CommandParameter="{Binding Text, ElementName=searchUser}" Content="Search by title" Grid.Column="4" Grid.Row="0"/>
+
+                    <ListView Name="userList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
+                        <ListView.View>
+                            <GridView x:Name="grdUser">
+                                <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
+                                <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </TabItem>
         </TabControl>
