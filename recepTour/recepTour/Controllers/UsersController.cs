@@ -201,7 +201,8 @@ namespace recepTour.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                TempData.Put("success", "Changes saved!");
+                return View(user);
             }
             ViewData["UserTypeId"] = new SelectList(_context.UserTypes, "Id", "Id", user.UserTypeId);
             return View(user);

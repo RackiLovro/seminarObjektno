@@ -89,6 +89,20 @@ namespace recepTour.Controllers
             var recipe = await _context.Recipes
                 .Include(r => r.DiffLevel)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            recipe.RecipeSteps = _context.RecipeSteps
+                .Where(m => m.RecipeId == recipe.Id).ToHashSet<RecipeStep>();
+
+            recipe.RecipeGroceries = _context.RecipeGroceries
+                .Include(c => c.Grocery)
+                .Where(m => m.RecipeId == recipe.Id)
+                .ToHashSet<RecipeGrocery>();
+
+            recipe.UserRecipes = _context.UserRecipes
+                .Include(c => c.User)
+                .Where(m => m.RecipeId == recipe.Id)
+                .ToHashSet<UserRecipe>();
+
             if (recipe == null)
             {
                 return NotFound();

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<recepTour.ViewModels.RecipeViewModel>
+@model IEnumerable<recepTour.ViewModels.RecipeViewModel>
 @inject UserManager<IdentityUser> userManager
 @inject RecepTourContext context
 
@@ -10,11 +10,14 @@
     }
 }
 
-<h1>Index</h1>
-
+<h1>Recipes</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create">Create New</a>
+    }
 </p>
+
 
 <form asp-controller="Recipes" asp-action="Index" method="get">
     <p>
@@ -61,10 +64,13 @@
             <td>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                }
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <em> |</em>
+                } 
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                <em> | </em> <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
             </td>
             @if (User.Identity.IsAuthenticated)
             {
