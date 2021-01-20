@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -17,7 +18,9 @@ namespace recepTour.Models
         }
 
         public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public int? DiffLevelId { get; set; }
 
         public virtual RecipeDifficulty DiffLevel { get; set; }
