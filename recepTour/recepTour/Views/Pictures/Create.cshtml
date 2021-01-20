@@ -10,19 +10,14 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form method="post" asp-controller="Pictures" asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Url" class="control-label"></label>
-                <input asp-for="Url" class="form-control" />
-                <span asp-validation-for="Url" class="text-danger"></span>
+                <label class="control-label">Upload an image</label>
+                <input class="form-control" accept="image/*" />
             </div>
             <div class="form-group">
-                <label asp-for="RecipeId" class="control-label"></label>
-                <select asp-for="RecipeId" class ="form-control" asp-items="ViewBag.RecipeId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Upload" class="btn btn-primary" />
             </div>
         </form>
     </div>
