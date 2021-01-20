@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using recepTour.Models;
 
 namespace recepTour.Controllers
@@ -47,7 +49,9 @@ namespace recepTour.Controllers
         // GET: Pictures/Create
         public IActionResult Create()
         {
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id");
+            Picture p = TempData.Get<Picture>("pic");
+            TempData.Put("pic", p);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", p.RecipeId);
             return View();
         }
 
@@ -56,16 +60,38 @@ namespace recepTour.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Url,RecipeId")] Picture picture)
+        public async Task<IActionResult> Create(IFormFile files)
         {
-            if (ModelState.IsValid)
+            if (files != null)
             {
-                _context.Add(picture);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (files.Length > 0)
+                {
+                    var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()),
+                        Path.GetExtension(Path.GetFileName(files.FileName)));
+
+                    Picture p = TempData.Get<Picture>("pic");
+
+                    using (var ms = new MemoryStream())
+                    {
+                        files.CopyTo(ms);
+                        byte[] bytes = ms.ToArray();
+                        p.Url = Convert.ToBase64String(bytes);
+                    }
+
+                    if (p.Url == null)
+                    {
+                        ModelState.AddModelError("", "Error uploading a photo!");
+                        return View();
+                    }
+
+                    _context.Add(p);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Details", "Recipe", p.RecipeId);
+                }
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", picture.RecipeId);
-            return View(picture);
+            ModelState.AddModelError("", "Error uploading a photo!");
+            return View();
         }
 
         // GET: Pictures/Edit/5

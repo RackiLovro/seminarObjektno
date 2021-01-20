@@ -56,6 +56,9 @@ namespace recepTour.Controllers
             usrp.UserId = Convert.ToInt32(_userManager.FindByNameAsync(User.Identity.Name).Result.Id);
             _context.Add(usrp);
             _context.SaveChanges();
+            Picture pic = new Picture();
+            pic.RecipeId = (int)recipeGrocery.RecipeId;
+            TempData.Put("pic", pic);
             return RedirectToAction("Create","Pictures");
         }
 

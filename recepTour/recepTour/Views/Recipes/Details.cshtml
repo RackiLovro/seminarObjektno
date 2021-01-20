@@ -50,6 +50,14 @@
                 @Html.DisplayFor(modelItem => item.value.Description)
             </dd>
         }
+    <div>
+        @Html.DisplayFor(model => model.Pictures.First().Url);
+        @{
+            var pk = "data:image/jpeg;base64," + @Model.Pictures.First().Url;
+        <img src=@pk width="200px" height="200px">
+        }
+
+    </div>
     </dl>
 </div>
 <div>

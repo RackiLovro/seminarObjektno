@@ -13,18 +13,15 @@
         <form method="post" asp-controller="Pictures" asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label class="control-label">Upload an image</label>
-                <input class="form-control" accept="image/*" />
+                <div class="col-md-10">
+                    <input class="form-control" name="files" type="file" />
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Upload" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

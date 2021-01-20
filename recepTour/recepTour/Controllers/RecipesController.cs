@@ -103,6 +103,9 @@ namespace recepTour.Controllers
                 .Where(m => m.RecipeId == recipe.Id)
                 .ToHashSet<UserRecipe>();
 
+            recipe.Pictures = _context.Pictures
+                .Where(c => c.RecipeId == recipe.Id).ToHashSet<Picture>();
+
             if (recipe == null)
             {
                 return NotFound();
