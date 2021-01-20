@@ -62,14 +62,13 @@ namespace recepTour.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IFormFile files)
         {
+            Picture p = TempData.Get<Picture>("pic");
             if (files != null)
             {
                 if (files.Length > 0)
                 {
                     var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()),
                         Path.GetExtension(Path.GetFileName(files.FileName)));
-
-                    Picture p = TempData.Get<Picture>("pic");
 
                     using (var ms = new MemoryStream())
                     {
@@ -87,11 +86,10 @@ namespace recepTour.Controllers
                     _context.Add(p);
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("Details", "Recipe", p.RecipeId);
+                    return RedirectToAction("Details", "Recipes", new { id = p.RecipeId });
                 }
             }
-            ModelState.AddModelError("", "Error uploading a photo!");
-            return View();
+            return RedirectToAction("Details", "Recipes", new { id = p.RecipeId });
         }
 
         // GET: Pictures/Edit/5

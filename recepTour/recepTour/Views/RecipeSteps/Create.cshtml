@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create a recipe</h1>
 
-<h4>RecipeStep</h4>
+<h4>Enter recipe steps</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,7 +17,7 @@
                 <input asp-for="StepNumber" class="form-control"  asp-items="ViewBag.StepNum"  style="pointer-events: none;" readonly />
                 <span asp-validation-for="StepNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
+           <div class="form-group" hidden>
                 <label asp-for="RecipeId" class="control-label">Recipe title</label>
                 <select asp-for="RecipeId" class="form-control" asp-items="ViewBag.RecipeId"  style="pointer-events: none;" readonly></select>
             </div>
@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Add another step" class="btn btn-primary" formaction=@Url.Action("Create") formmethod="post" />
-                <input type="submit" value="Continue" class="btn btn-primary" formaction=@Url.Action("Continue") formmethod="post" />
+                <input type="submit" value="Add and continue" class="btn btn-primary" formaction=@Url.Action("Continue") formmethod="post" />
             </div>
         </form>
         <div>

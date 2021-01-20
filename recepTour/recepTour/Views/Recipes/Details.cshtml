@@ -1,4 +1,6 @@
 ﻿@model recepTour.Models.Recipe
+@inject UserManager<IdentityUser> userManager
+@inject RecepTourContext context
 
 @{
     ViewData["Title"] = "Details";
@@ -31,9 +33,9 @@
                 <dt class="col-sm-2">
                 </dt>
             }
-        <dd class="col-sm-10">
-            • @Html.DisplayFor(modelItem => item.value.Amount) @Html.DisplayFor(modelItem => item.value.Grocery.Name)
-        </dd>
+            <dd class="col-sm-10">
+                • @Html.DisplayFor(modelItem => item.value.Amount) @Html.DisplayFor(modelItem => item.value.Grocery.Name)
+            </dd>
         }
         <dt class="col-sm-2">
             Steps
@@ -46,23 +48,30 @@
                 </dt>
             }
             <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => item.value.StepNumber). 
+                @Html.DisplayFor(modelItem => item.value.StepNumber).
                 @Html.DisplayFor(modelItem => item.value.Description)
             </dd>
         }
-    <div>
-        @Html.DisplayFor(model => model.Pictures.First().Url);
-        @{
-            var pk = "data:image/jpeg;base64," + @Model.Pictures.First().Url;
-        <img src=@pk width="200px" height="200px">
-        }
+        @if (Model.Pictures.Count != 0){
+            <dt class="col-sm-2">
+                Photo
+            </dt>
+            <dd class="col-sm-10">
+                @{ 
+                    var pk = "data:image/jpeg;base64," + @Model.Pictures.First().Url;
+                        <img src=@pk width="200" height="200">
 
-    </div>
+                }
+            </dd>
+         }
+        <p></p>
+
     </dl>
 </div>
 <div>
-    @if (User.Identity.IsAuthenticated){
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-    }|
+    @if (User.Identity.IsAuthenticated && Int32.Parse(userManager.FindByNameAsync(User.Identity.Name).Result.Id) == context.UserRecipes.Where(c => c.RecipeId == Model.Id).FirstOrDefault().UserId)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> <em> |</em>
+    }
     <a asp-action="Index">Back to List</a>
 </div>

@@ -4,15 +4,15 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create a recipe</h1>
 
-<h4>RecipeGrocery</h4>
+<h4>Enter the ingredients</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+           <div class="form-group" hidden>
                 <label asp-for="RecipeId" class="control-label">Recipe title</label>
                 <select asp-for="RecipeId" class="form-control" asp-items="ViewBag.RecipeId" style="pointer-events: none;" readonly></select>
             </div>
@@ -26,21 +26,21 @@
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Add another grocery" class="btn btn-primary" formaction=@Url.Action("Create") formmethod="post" />
-                <input type="submit" value="Continue" class="btn btn-primary" formaction=@Url.Action("Continue") formmethod="post" />
+                <input type="submit" value="Add another ingredient" class="btn btn-primary" formaction=@Url.Action("Create") formmethod="post" />
+                <input type="submit" value="Add and continue" class="btn btn-primary" formaction=@Url.Action("Continue") formmethod="post" />
             </div>
         </form>
     </div>
     <div class="col-md-4">
-        <ol id="steps">
+        <ul id="steps">
             @if (ViewData["groceries"] != null)
             {
                 @foreach (var item in ViewData["groceries"] as List<String>)
                 {
-                    <li>@item</li>
+            <li> @item</li>
                 }
             }
-        </ol>
+        </ul>
     </div>
 
 </div>

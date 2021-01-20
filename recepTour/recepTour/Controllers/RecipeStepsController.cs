@@ -99,10 +99,20 @@ namespace recepTour.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Continue([Bind("Id,StepNumber,RecipeId,Description")] RecipeStep recipeStep)
         {
-            RecipeGrocery grocery = new RecipeGrocery();
-            grocery.RecipeId = (int)recipeStep.RecipeId;
-            TempData.Put("grocery", grocery);
-            return RedirectToAction("Create", "RecipeGroceries");
+            if (ModelState.IsValid)
+            {
+                if (recipeStep.Description != null)
+                {
+                    _context.Add(recipeStep);
+                    await _context.SaveChangesAsync();
+                }
+                RecipeGrocery grocery = new RecipeGrocery();
+                grocery.RecipeId = (int)recipeStep.RecipeId;
+                TempData.Put("grocery", grocery);
+                return RedirectToAction("Create", "RecipeGroceries");
+            }
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Title", recipeStep.RecipeId);
+            return View(recipeStep);
         }
 
         // GET: RecipeSteps/Edit/5

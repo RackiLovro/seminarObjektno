@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create a recipe</h1>
 
-<h4>Picture</h4>
+<h4>Upload a photo</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,11 +14,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <div class="col-md-10">
-                    <input class="form-control" name="files" type="file" />
+                    <input class="form-control" name="files" type="file" id="formFile" />
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Upload" class="btn btn-primary" />
+                <input type="submit" value="Upload" class="btn btn-primary" formaction=@Url.Action("Create") formmethod="post" />
+                <input type="submit" value="Continue without a photo" class="btn btn-primary" formaction=@Url.Action("Create") formmethod="post" />
             </div>
         </form>
     </div>

@@ -62,12 +62,12 @@
                 @Html.DisplayFor(modelItem => item.User)
             </td>
             <td>
-                @if (User.Identity.IsAuthenticated)
+                @if (User.Identity.IsAuthenticated && Int32.Parse(userManager.FindByNameAsync(User.Identity.Name).Result.Id) == context.UserRecipes.Where(c => c.RecipeId == item.Id).FirstOrDefault().UserId)
                 {
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <em> |</em>
                 } 
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                @if (User.Identity.IsAuthenticated)
+                @if (User.Identity.IsAuthenticated && Int32.Parse(userManager.FindByNameAsync(User.Identity.Name).Result.Id) == context.UserRecipes.Where(c => c.RecipeId == item.Id).FirstOrDefault().UserId)
                 {
                 <em> | </em> <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 }
