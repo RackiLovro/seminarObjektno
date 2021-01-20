@@ -129,10 +129,16 @@ namespace recepTour.Controllers
         }
 
         // GET: Recipes/My/userId
-        public async Task<IActionResult> My(int? userId)
+        public async Task<IActionResult> My(int? userId, string? title)
         {
             var recipes = from r in _context.Recipes join ur in _context.UserRecipes on r.Id equals ur.RecipeId where ur.UserId == userId select r;
             recipes = recipes.Include(r => r.DiffLevel);
+
+            if(!String.IsNullOrEmpty(title))
+            {
+                recipes = recipes.Where(r => r.Title.Contains(title));
+            }
+
             return View(await recipes.ToListAsync());
         }
 
