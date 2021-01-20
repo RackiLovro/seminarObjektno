@@ -11,36 +11,38 @@
     <Grid>
         <TabControl TabStripPlacement="Top">
             <!--INGRIDIENT SEARCH-->
-            <TabItem Header="Ingridients">
+            <TabItem Header="Ingridients" DataContext="{Binding GroceriesSearch}">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition Height="76"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <TreeView Grid.Row="0" Grid.Column="1">
-                        <CheckBox Content="milk produce"/>
-                        <TreeViewItem>
-                            <CheckBox Content="milk"/>
-                            <CheckBox Content="zogurt"/>
-                        </TreeViewItem>
-                        <CheckBox Content="cereal"/>
-                        <CheckBox Content="spices"/>
-                        <TreeViewItem>
-                            <CheckBox Content="salt"/>
-                            <CheckBox Content="pepper"/>
-                        </TreeViewItem>
-                    </TreeView>
+                    <ListBox Name="checkboxGrocery" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Groceries}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Name}" IsChecked="{Binding IncludeGrocery}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
-                    <Button Content="Search" Grid.Column="1" Grid.Row="1"/>
+                    <ListView Name="groceryList" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2" ItemsSource="{Binding Recipes}">
+                        <ListView.View>
+                            <GridView x:Name="grdGrocery">
+                                <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
+                                <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </TabItem>
-            <TabItem Header="Titles">
+            <TabItem Header="Titles" DataContext="{Binding TitleSearch}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -50,17 +52,27 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"></TextBox>
-                    <Button Content="Search" Grid.Column="2" Grid.Row="4"/>
+                    <TextBox Name="searchTitle" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
+                    <Button Command="{Binding TitleSearch}" CommandParameter="{Binding Text, ElementName=searchTitle}" Content="Search by title" Grid.Column="4" Grid.Row="0"/>
+
+                    <ListView Name="titleList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
+                        <ListView.View>
+                            <GridView x:Name="grdTitle">
+                                <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
+                                <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
                 </Grid>
             </TabItem>
-            <TabItem Header="Users">
+            <TabItem Header="Users" DataContext="{Binding UserSearch}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -70,14 +82,39 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"></TextBox>
-                    <Button Content="Search" Grid.Column="2" Grid.Row="4"/>
+                    <TextBox Name="searchUser" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
+                    <Button Command="{Binding UserSearch}" CommandParameter="{Binding Text, ElementName=searchUser}" Content="Search by title" Grid.Column="4" Grid.Row="0"/>
+
+                    <ListView Name="userList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
+                        <ListView.View>
+                            <GridView x:Name="grdUser">
+                                <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
+                                <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Back">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Click="Back" Content="Back to homepage" Grid.Column="1" Grid.Row="1"/>
                 </Grid>
             </TabItem>
         </TabControl>

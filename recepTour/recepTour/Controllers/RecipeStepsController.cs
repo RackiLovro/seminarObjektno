@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -118,7 +118,7 @@ namespace recepTour.Controllers
                 var recStep = await _context.RecipeSteps.
                     Include(u => u.Recipe).
                     FirstOrDefaultAsync(c => c.Id == id);
-             
+
                 int loggedUserId = Convert.ToInt32(_userManager.FindByNameAsync(User.Identity.Name).Result.Id);
                 if (_context.UserRecipes
                     .Where(m => m.UserId == loggedUserId)

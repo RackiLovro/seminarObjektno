@@ -320,6 +320,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Models\DesktopTourContext.cs" />
     <Compile Include="Models\Grocery.cs" />
     <Compile Include="Models\GroceryType.cs" />
@@ -332,8 +333,13 @@
     <Compile Include="Models\UserFavorite.cs" />
     <Compile Include="Models\UserRecipe.cs" />
     <Compile Include="Models\UserType.cs" />
+    <Compile Include="ViewModel\GroceryCheckBoxViewModel.cs" />
     <Compile Include="ViewModel\RecipeDetailsViewModel.cs" />
     <Compile Include="ViewModel\RecipeFeedViewModel.cs" />
+    <Compile Include="ViewModel\GroceriesSearchViewModel.cs" />
+    <Compile Include="ViewModel\TitleSearchViewModel.cs" />
+    <Compile Include="ViewModel\SearchViewModel.cs" />
+    <Compile Include="ViewModel\UserSearchViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -401,9 +407,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Pictures\Untitled.png" />
   </ItemGroup>

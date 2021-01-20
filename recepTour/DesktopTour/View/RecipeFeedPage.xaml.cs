@@ -24,15 +24,14 @@ namespace DesktopTour.View
         public RecipeFeedPage()
         {
             InitializeComponent();
-            RecipeFeedViewModel recipeFeedViewModel = new RecipeFeedViewModel();
-            this.DataContext = recipeFeedViewModel;
         }
 
         private void Details(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
 
-            RecipeDetailPage recipeDetailPage = new RecipeDetailPage((Recipe)button.Tag);
+            RecipeDetailPage recipeDetailPage = new RecipeDetailPage();
+            recipeDetailPage.DataContext = new RecipeDetailsViewModel(button.Tag);
 
             this.NavigationService.Navigate(recipeDetailPage);
         }

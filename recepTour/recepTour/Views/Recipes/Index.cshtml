@@ -1,7 +1,13 @@
-﻿@model IEnumerable<recepTour.Models.Recipe>
+@model IEnumerable<recepTour.ViewModels.RecipeViewModel>
+@inject UserManager<IdentityUser> userManager
+@inject RecepTourContext context
 
 @{
     ViewData["Title"] = "Index";
+    if(User.Identity.IsAuthenticated)
+    {
+        int userId = Int32.Parse(userManager.FindByNameAsync(User.Identity.Name).Result.Id);
+    }
 }
 
 <h1>Recipes</h1>
@@ -15,9 +21,17 @@
 
 <form asp-controller="Recipes" asp-action="Index" method="get">
     <p>
-        Search by title: <input type="text" name="searchString" />
+        Search by title: <input type="text" name="title" />
         <input type="submit" value="Search" />
-        <input type="submit" asp-controller="Recipes" asp-action="Index" value="Reset" />
+        <input type="submit" asp-controller="Recipes" asp-action="AllRecipes"value="Reset" />
+    </p>
+</form>
+
+<form asp-controller="Recipes" asp-action="ByUser" method="get">
+    <p>
+        Search by user: <input type="text" name="userName" />
+        <input type="submit" value="Search" />
+        <input type="submit" asp-controller="Recipes" asp-action="AllRecipes" value="Reset" />
     </p>
 </form>
 
@@ -30,17 +44,22 @@
             <th>
                 Difficulty level
             </th>
-            <th></th>
+            <th>
+                User
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DiffLevel.Description)
+                @Html.DisplayFor(modelItem => item.DiffLevelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User)
             </td>
             <td>
                 @if (User.Identity.IsAuthenticated)
@@ -52,8 +71,21 @@
                 {
                 <em> | </em> <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 }
-                </td>
+            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                int userId = Int32.Parse(userManager.FindByNameAsync(User.Identity.Name).Result.Id);
+                if (!context.UserFavorites.Any(uf => uf.UserId == userId && uf.RecipeId == item.Id))
+                {
+                    <td>
+                        <form asp-controller="UserFavorites" asp-action="Create" asp-route-userId="@userId" asp-route-recipeId="@item.Id" method="post">
+                            <input type="submit" value="Favorite" class="btn btn-primary form-inline" />
+                        </form>
+                    </td>
+                }
+            }
         </tr>
-}
+        }
     </tbody>
 </table>

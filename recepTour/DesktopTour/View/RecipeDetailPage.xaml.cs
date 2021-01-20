@@ -21,16 +21,17 @@ namespace DesktopTour.View
     /// </summary>
     public partial class RecipeDetailPage : Page
     {
-        public RecipeDetailPage(Recipe recipe)
+        public RecipeDetailPage()
         {
             InitializeComponent();
-            this.DataContext = new RecipeDetailsViewModel(recipe);
         }
         private void Back(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
 
             RecipeFeedPage recipeFeedPage = new RecipeFeedPage();
+            RecipeFeedViewModel recipeFeedViewModel = new RecipeFeedViewModel();
+            recipeFeedPage.DataContext = recipeFeedViewModel;
 
             this.NavigationService.Navigate(recipeFeedPage);
         }

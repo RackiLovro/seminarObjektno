@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopTour.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,14 @@ namespace DesktopTour.View
         {
             InitializeComponent();
         }
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            HomePage homePage = new HomePage();
+
+            this.NavigationService.Navigate(homePage);
+        }
     }
+
 }

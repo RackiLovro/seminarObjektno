@@ -65,17 +65,25 @@ namespace recepTour.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,RecipeId")] UserFavorite userFavorite)
+        public async Task<IActionResult> Create(int? userId, int? recipeId)
         {
-            if (ModelState.IsValid)
+            if (userId != null && recipeId != null)
             {
+                var userFavorite = new UserFavorite
+                {
+                    UserId = (int)userId,
+                    RecipeId = (int)recipeId
+                };
                 _context.Add(userFavorite);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Recipes");
+                //ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", userFavorite.RecipeId);
+                //ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", userFavorite.UserId);
+                //return View(userFavorite);
+            } else
+            {
+                return RedirectToAction("Index", "Recipes");
             }
-            ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "Id", userFavorite.RecipeId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", userFavorite.UserId);
-            return View(userFavorite);
         }
 
         // GET: UserFavorites/Edit/5
