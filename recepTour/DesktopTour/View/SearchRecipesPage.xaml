@@ -37,9 +37,12 @@
                             <GridView x:Name="grdGrocery">
                                 <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
                                 <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
+                                <GridViewColumn Width="Auto" Header="Author" DisplayMemberBinding="{Binding Username}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
+
+                    <Button Tag="{Binding ElementName=groceryList, Path=SelectedItem}" Click="Details" Content="Recipe details" Grid.Column="0" Grid.Row="2"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Titles" DataContext="{Binding TitleSearch}">
@@ -58,18 +61,19 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Name="searchTitle" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
-                    <Button Command="{Binding TitleSearch}" CommandParameter="{Binding Text, ElementName=searchTitle}" Content="Search by title" Grid.Column="4" Grid.Row="0"/>
+                    <TextBox Name="searchTitle" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <Button Command="{Binding TitleSearch}" CommandParameter="{Binding Text, ElementName=searchTitle}" Content="Search by title" Grid.Column="3" Grid.Row="0"/>
 
                     <ListView Name="titleList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
                         <ListView.View>
                             <GridView x:Name="grdTitle">
                                 <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
                                 <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
+                                <GridViewColumn Width="Auto" Header="Author" DisplayMemberBinding="{Binding Username}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
-
+                    <Button Tag="{Binding ElementName=titleList, Path=SelectedItem}" Click="Details" Content="Recipe details" Grid.Column="4" Grid.Row="0"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Users" DataContext="{Binding UserSearch}">
@@ -88,17 +92,19 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Name="searchUser" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
-                    <Button Command="{Binding UserSearch}" CommandParameter="{Binding Text, ElementName=searchUser}" Content="Search by title" Grid.Column="4" Grid.Row="0"/>
+                    <TextBox Name="searchUser" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <Button Command="{Binding UserSearch}" CommandParameter="{Binding Text, ElementName=searchUser}" Content="Search by title" Grid.Column="3" Grid.Row="0"/>
 
                     <ListView Name="userList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
                         <ListView.View>
                             <GridView x:Name="grdUser">
                                 <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
                                 <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
+                                <GridViewColumn Width="Auto" Header="Author" DisplayMemberBinding="{Binding Username}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Button Tag="{Binding ElementName=userList, Path=SelectedItem}" Click="Details" Content="Recipe details" Grid.Column="4" Grid.Row="0"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Back">

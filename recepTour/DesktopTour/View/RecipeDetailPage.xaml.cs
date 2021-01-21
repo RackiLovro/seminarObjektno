@@ -29,11 +29,9 @@ namespace DesktopTour.View
         {
             var button = sender as Button;
 
-            RecipeFeedPage recipeFeedPage = new RecipeFeedPage();
-            RecipeFeedViewModel recipeFeedViewModel = new RecipeFeedViewModel();
-            recipeFeedPage.DataContext = recipeFeedViewModel;
+            HomePage homePage = new HomePage();
 
-            this.NavigationService.Navigate(recipeFeedPage);
+            this.NavigationService.Navigate(homePage);
         }
     }
 }

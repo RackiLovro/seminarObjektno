@@ -21,6 +21,13 @@ namespace DesktopTour
         {
             get { return DiffLevel.Description; }
         }
+        public string Username
+        {
+            get 
+            {
+                return new List<UserRecipe>(UserRecipes)[0].User.Nickname;
+            }
+        }
         public virtual RecipeDifficulty DiffLevel { get; set; }
         public virtual ICollection<Picture> Pictures { get; set; }
         public virtual ICollection<RecipeGrocery> RecipeGroceries { get; set; }

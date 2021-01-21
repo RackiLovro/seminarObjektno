@@ -23,6 +23,7 @@
                 <GridView x:Name="grdActivity">
                     <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Width="Auto" Header="Recipe difficulty" DisplayMemberBinding="{Binding DifficultyDescription}"/>
+                    <GridViewColumn Width="Auto" Header="Author" DisplayMemberBinding="{Binding Username}"/>
                 </GridView>
             </ListView.View>
         </ListView>

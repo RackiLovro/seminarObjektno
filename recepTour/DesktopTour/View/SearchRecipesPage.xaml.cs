@@ -33,6 +33,16 @@ namespace DesktopTour.View
 
             this.NavigationService.Navigate(homePage);
         }
+
+        private void Details(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            RecipeDetailPage recipeDetailPage = new RecipeDetailPage();
+            recipeDetailPage.DataContext = new RecipeDetailsViewModel(button.Tag);
+
+            this.NavigationService.Navigate(recipeDetailPage);
+        }
     }
 
 }

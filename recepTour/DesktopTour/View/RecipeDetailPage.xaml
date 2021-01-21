@@ -47,7 +47,7 @@
         <ListView Name="pictures" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" ItemsSource="{Binding Pictures}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding Url}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Image Source="{Binding Source}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -66,6 +66,11 @@ namespace DesktopTour.ViewModel
             {
                 _recipes = value;
                 _recipes.ToList().ForEach(r => r.DiffLevel = _context.RecipeDifficulties.Where(rd => rd.DiffLevel == r.DiffLevelId).Single());
+
+                _recipes.ToList().ForEach(r => r.UserRecipes = _context.UserRecipes.Where(ur => ur.RecipeId == r.Id).ToList());
+
+                _recipes.ToList().ForEach(r => r.UserRecipes.First().User = _context.Users.Where(u => u.Id == r.UserRecipes.First().UserId).Single());
+
                 OnPropertyChanged("Recipes");
             }
         }

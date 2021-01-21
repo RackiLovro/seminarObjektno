@@ -30,7 +30,7 @@ namespace DesktopTour.ViewModel
             _recipe.RecipeGroceries = _context.RecipeGroceries.Where(rg => rg.RecipeId == _recipe.Id).ToList();
             _recipe.RecipeGroceries.ToList().ForEach(rg => rg.Grocery = _context.Groceries.Where(g => g.Id == rg.GroceryId).Single());
 
-            _recipe.Pictures = _context.Pictures.Where(p => p.RecipeId == _recipe.Id).ToList();
+            _recipe.Pictures = _context.Pictures.Where(p => p.RecipeId == _recipe.Id).ToHashSet<Picture>();
         }
 
         public List<Picture> Pictures
