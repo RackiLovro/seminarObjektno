@@ -24,21 +24,11 @@ namespace DesktopTour.View
         public MainWindow()
         {
             InitializeComponent();
-            lovroide();
         }
 
         public MainWindow(bool contentLoaded)
         {
             _contentLoaded = contentLoaded;
-        }
-
-        public void lovroide()
-        {
-            var lovro = new DesktopTourContext();
-
-            var luka = lovro.Recipes.ToList().Select(e => e.Title);
-
-            var luka1 = "lovro";
         }
     }
 }
