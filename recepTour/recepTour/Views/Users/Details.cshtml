@@ -48,6 +48,9 @@
                 </dd>
             </dl>
         </div>*@
-        <div>
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit my profile</a> 
-        </div>
+        <dt class="col-sm-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit my profile</a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-action="ChangePassword">Change password</a>
+        </dt>

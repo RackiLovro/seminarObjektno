@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using recepTour.Models;
+using recepTour.ViewModels;
 
 namespace recepTour.Controllers
 {
@@ -236,6 +237,37 @@ namespace recepTour.Controllers
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(int? userId, ChangePasswordViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                var user = await _userManager.FindByIdAsync(userId.ToString());
+                if(user == null)
+                {
+                    return RedirectToAction("Login");
+                }
+
+                var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    var userObject = await _context.Users.FindAsync(userId);
+                    userObject.PasswordHash = EncodePasswordMd5(model.NewPassword);
+                    _context.Update(userObject);
+                    await _context.SaveChangesAsync();
+                    await _signInManager.RefreshSignInAsync(user);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return View(model);
         }
 
         private bool UserExists(int id)
