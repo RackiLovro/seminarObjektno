@@ -32,7 +32,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <ListView Name="groceryList" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2" ItemsSource="{Binding Recipes}">
+                    <ListView SelectedIndex="0" Name="groceryList" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2" ItemsSource="{Binding Recipes}">
                         <ListView.View>
                             <GridView x:Name="grdGrocery">
                                 <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
@@ -64,7 +64,7 @@
                     <TextBox Name="searchTitle" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
                     <Button Command="{Binding TitleSearch}" CommandParameter="{Binding Text, ElementName=searchTitle}" Content="Search by title" Grid.Column="3" Grid.Row="0"/>
 
-                    <ListView Name="titleList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
+                    <ListView SelectedIndex="0" Name="titleList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
                         <ListView.View>
                             <GridView x:Name="grdTitle">
                                 <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
@@ -93,9 +93,9 @@
                     </Grid.RowDefinitions>
 
                     <TextBox Name="searchUser" Text="{Binding SearchText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
-                    <Button Command="{Binding UserSearch}" CommandParameter="{Binding Text, ElementName=searchUser}" Content="Search by title" Grid.Column="3" Grid.Row="0"/>
+                    <Button Command="{Binding UserSearch}" CommandParameter="{Binding Text, ElementName=searchUser}" Content="Search by user" Grid.Column="3" Grid.Row="0"/>
 
-                    <ListView Name="userList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
+                    <ListView SelectedIndex="0" Name="userList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{Binding Recipes}">
                         <ListView.View>
                             <GridView x:Name="grdUser">
                                 <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>

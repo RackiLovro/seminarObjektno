@@ -9,9 +9,6 @@
       Title="Home page">
 
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="../pictures/untitled.png" Stretch="UniformToFill"/>
-        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>

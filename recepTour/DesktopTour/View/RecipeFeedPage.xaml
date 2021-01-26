@@ -18,7 +18,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <ListView Name="recipeList" Grid.ColumnSpan="2" ItemsSource="{Binding Recipes}">
+        <ListView SelectedIndex="0" Name="recipeList" Grid.ColumnSpan="2" ItemsSource="{Binding Recipes}">
             <ListView.View>
                 <GridView x:Name="grdActivity">
                     <GridViewColumn Width="Auto" Header="Recipe title" DisplayMemberBinding="{Binding Title}"/>
