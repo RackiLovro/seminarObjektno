@@ -75,6 +75,41 @@ namespace RecepTourTesting
 
             Assert.AreEqual(context.Recipes.Count(), 2);
         }
+
+        [TestMethod]
+        public void Test_Recipes_EditOneRecipe()
+        {
+            var recipes = context.Recipes;
+            var idToEdit = 1;
+
+            var recipeToEdit = recipes.Where(r => r.Id == idToEdit).FirstOrDefault();
+
+            Assert.IsNotNull(recipeToEdit);
+            Assert.AreEqual(recipeToEdit.Title, "Deep fried caviar");
+
+            recipeToEdit.Title = "Not so deeply fried caviar";
+            recipes.Update(recipeToEdit);
+            context.SaveChanges();
+
+            var editedRecipe = recipes.Where(r => r.Id == idToEdit).FirstOrDefault();
+
+            Assert.AreEqual(editedRecipe.Title, "Not so deeply fried caviar");
+        }
+
+        [TestMethod]
+        public void Test_Recipes_SearchByTitle()
+        {
+            var recipes = context.Recipes;
+
+            var searchString = "es";
+
+            Assert.AreEqual(context.Recipes.Count(), 3);
+
+            var filteredRecipes = recipes.Where(r => r.Title.Contains(searchString));
+
+            Assert.IsNotNull(filteredRecipes);
+            Assert.AreEqual(context.Recipes.Count(), 3);
+        }
     }
 
     public class Utils { 
