@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="recepTour.Controllers.GroceriesController" Collapsed="true">
+    <Position X="1.5" Y="2.25" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.154" Y="1.339" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\GroceriesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.GroceryTypesController" Collapsed="true">
+    <Position X="3" Y="1" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.412" Y="0.706" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBACAAAAAAAAAAAEAAEACAgEAAAAAAAA=</HashCode>
+      <FileName>Controllers\GroceryTypesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.PicturesController" Collapsed="true">
+    <Position X="7.75" Y="1" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.977" Y="0.6" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBICAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\PicturesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.RecipeDifficultiesController" Collapsed="true">
+    <Position X="9.5" Y="2.25" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.859" Y="1.185" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBACAAAAAAAAAAAEAAEACAAEAEAAAAAA=</HashCode>
+      <FileName>Controllers\RecipeDifficultiesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.RecipeGroceriesController" Collapsed="true">
+    <Position X="6.75" Y="8.25" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.463" Y="-2.232" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAABBACAAAAAAABAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RecipeGroceriesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.RecipesController">
+    <Position X="1.5" Y="3.5" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.537" Y="-0.284" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEQBAAAAgABFACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RecipesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.RecipeStepsController" Collapsed="true">
+    <Position X="7.5" Y="7.25" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.425" Y="-1.619" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAADAIAAAABBACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RecipeStepsController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.UserFavoritesController" Collapsed="true">
+    <Position X="3" Y="7.5" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.893" Y="-1.765" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBAAAAAAAAAAAAAEAAEACAAGAAABAAAA=</HashCode>
+      <FileName>Controllers\UserFavoritesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.UserRecipesController" Collapsed="true">
+    <Position X="4.75" Y="8.25" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.029" Y="1.673" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAABBACIAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserRecipesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.UsersController">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.87" Y="-0.273" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAABhQCAAAhAAAYAAAEAAEACAAEQAAAEAAA=</HashCode>
+      <FileName>Controllers\UsersController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Controllers.UserTypesController" Collapsed="true">
+    <Position X="5.25" Y="0.75" Width="1.75" />
+    <AssociationLine Name="_context" Type="recepTour.Models.RecepTourContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.805" Y="2.193" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBACAAAAAAAAAAAEAgEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserTypesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="recepTour.Models.RecepTourContext" Collapsed="true">
+    <Position X="5.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAQAwAAAAAACAIAgAEQQACAAACAAAAAAAAAg=</HashCode>
+      <FileName>Models\RecepTourContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
