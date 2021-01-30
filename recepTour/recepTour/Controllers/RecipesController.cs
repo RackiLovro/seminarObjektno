@@ -78,6 +78,29 @@ namespace recepTour.Controllers
             return View("Index", await recipes.ToListAsync());
         }
 
+        // GET: Recipes
+        public async Task<IActionResult> ByIngridients(string[] ingridients)
+        {
+            var includeGroceries = from g in _context.Groceries
+                                   where ingridients.Contains(g.Id.ToString())
+                                   select g;
+           
+            var recipes = from r in _context.Recipes
+                          join ur in _context.UserRecipes on r.Id equals ur.RecipeId
+                          join rg in _context.RecipeGroceries on r.Id equals rg.RecipeId
+                          join g in _context.Groceries on rg.GroceryId equals g.Id
+                          where includeGroceries.Contains(g)
+                          select new RecipeViewModel
+                          {
+                              Id = r.Id,
+                              Title = r.Title,
+                              DiffLevelName = r.DiffLevel.Description,
+                              User = ur.User.Nickname
+                          };
+
+            return View("Index", await recipes.ToListAsync());
+        }
+
         // GET: Recipes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
