@@ -98,7 +98,7 @@ namespace recepTour.Controllers
                               User = ur.User.Nickname
                           };
 
-            return View("Index", await recipes.ToListAsync());
+            return View("Index", await recipes.Distinct().ToListAsync());
         }
 
         // GET: Recipes/Details/5
