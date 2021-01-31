@@ -185,11 +185,15 @@ namespace recepTour.Controllers
                 return NotFound();
             }
 
+            var newUserSettings = await _context.Users.FindAsync(user.Id);
+            newUserSettings.Nickname = user.Nickname;
+            newUserSettings.Status = user.Status;
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(newUserSettings);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
