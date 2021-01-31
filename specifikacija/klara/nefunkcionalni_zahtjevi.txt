@@ -1,0 +1,10 @@
+Nefunkcionalni zahtjevi:
+•	Sustav treba omogućiti rad više korisnika u stvarnom vremenu
+•	Jezik korisničkog sučelja i jezik u programskom kodu je engleski
+•	Korisničko sučelje i sustav moraju podržavati hrvatsku abecedu (dijakritičke znakove) pri unosu i prikazu tekstualnog sadržaja
+•	Vrijeme potrebno da se dohvati neki podatak iz baze podataka treba biti relativno kratko (ne više od nekoliko sekundi)
+•	Neispravno korištenje korisničkog sučelja ne smije narušiti funkcionalnost i rad sustava 
+•	Sustav treba biti jednostavan za korištenje, korisnici se moraju znati koristiti sučeljem bez opširnih uputa
+•	Veza s bazom podataka mora biti kvalitetno zaštićena, brza i otporna na vanjske greške
+•	Pristup sustavu preko javne mreže je zaštićen pomoću HTTPS protokola
+•	Koristi se objektno orijentirana paradigma, a kao posljedica toga je korištenje C# u sklopu backenda

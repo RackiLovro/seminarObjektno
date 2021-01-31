@@ -1,0 +1,63 @@
+UseCases – 2, 5, 8, 11, 14
+
+2) Login u sustav
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Ulogirati se u sustav
+	•	Sudionici: Baza podataka
+	•	Preduvjet: Registracija korisnika
+	•	Opis osnovnog tijeka:
+		1.	Korisnik unosi svoj e-mail/username? za login te svoju lozinku
+		2.	Podatci se provjeravaju u bazi podataka
+		3.	Korisnik pristupa svom računu
+	•	Opis mogućih odstupanja:
+		1.	Korisnik unosi e-mail u pogrešnom formatu e-maila
+			•	Sustav obavještava korisnika o pogrešnom formatu e-maila i traži od korisnika da ponovno unese podatke
+		2.	Korisnik je unio ili neregistrirani e-mail ili krivu lozinku
+			•	Sustav obavještava korisnika kako uneseni podaci nisu valjani te od njega traži da pokuša ponovo
+
+
+5) Dodavanje recepta pod „Favorites“
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Spremiti željeni recept pod „Favorites“
+	•	Sudionici: Baza podataka
+	•	Preduvjet: Korisnik je prijavljen u sustav
+	•	Opis osnovnog tijeka:
+		1.	Korisnik pregledava recepte
+		2.	Korisnik odabire recept kojega želi dodati pod „Favorites“
+		3.	Recept se nalazi u favoritima tog korisnika
+
+
+8) Brisanje vlastitog recepta
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Obrisati vlastiti recept
+	•	Sudionici: Baza podataka
+	•	Preduvjet: Korisnik je prijavljen u sustav
+	•	Opis osnovnog tijeka:
+		1.	Korisnik pregledava vlastite recepte
+		2.	Korisnik odabire koji recept želi obrisati
+		3.	Korisnik odabire opciju za brisanje 
+		4.	Recept se briše iz baze podataka te više ne postoji u sustavu
+
+
+11) Pretraživanje recepata po sastojcima
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Pronaći sve recepte koji sadržavaju odabrane sastojke
+	•	Sudionici: Baza podataka
+	•	Preduvjet: -
+	•	Opis osnovnog tijeka:
+		1.	Korisnik označuje sastojke koje želi naći u receptu
+		2.	Korisnik odabire opciju pretraživanja
+		3.	Sustav prikazuje adekvatne recepte
+	•	Opis mogućih odstupanja:
+		1.  Ne postoji recept koji zadovoljava filtre pretrage
+			• Sustav obavještava korisnika kako ne postoji recept u sustavu koji bi zadovoljavao postavljene kriterije
+		
+		
+14) Detaljnije prikazivanje recepta
+	•	Glavni sudionik: Korisnik
+	•	Cilj: Detaljno prikazati odabrani recept 
+	•	Sudionici: Baza podataka
+	•	Preduvjet: -
+	•	Opis osnovnog tijeka:
+		1.	Korisnik odabire koji recept želi u potpunosti prikazati
+		2.	Sustav prikazuje detaljni tekst recepta, popis potrebnih sastojaka, slike, …
