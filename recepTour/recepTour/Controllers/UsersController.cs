@@ -79,11 +79,11 @@ namespace recepTour.Controllers
             }
             catch (DbUpdateException ex)
             {
-                ViewBag.message = "The user " + user.Nickname + " is not saved successfully";
+                TempData["Message"] = "Registration for user: " + user.Nickname + " failed!";
                 ModelState.AddModelError("", "E-mail or nickname already in use!") ;
                 return View(uc);
             }
-            ViewBag.message = "The user " + user.Nickname + " is saved successfully";
+            TempData["Message"] = "The user " + user.Nickname + " registered successfully!";
             return RedirectToAction("Index", "Home");
         }
 
@@ -109,6 +109,7 @@ namespace recepTour.Controllers
 
                 if(result.Succeeded)
                 {
+                    TempData["Message"] = "The user " + user.UserName + " logged in successfully!";
                     return RedirectToAction("Index", "Home");
                 }
 
