@@ -84,7 +84,7 @@ namespace recepTour.Controllers
                 return View(uc);
             }
             ViewBag.message = "The user " + user.Nickname + " is saved successfully";
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Logout()
