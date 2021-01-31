@@ -79,10 +79,10 @@ namespace recepTour.Controllers
         }
 
         // GET: Recipes
-        public async Task<IActionResult> ByIngridients(string[] ingridients)
+        public async Task<IActionResult> ByIngredients(string[] ingredients)
         {
             var includeGroceries = from g in _context.Groceries
-                                   where ingridients.Contains(g.Id.ToString())
+                                   where ingredients.Contains(g.Id.ToString())
                                    select g;
            
             var recipes = from r in _context.Recipes
