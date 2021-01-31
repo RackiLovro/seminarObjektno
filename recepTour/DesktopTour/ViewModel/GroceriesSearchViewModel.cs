@@ -51,36 +51,85 @@ namespace DesktopTour.ViewModel
                     }
                     else
                     {
-                        var recipes = from r in _context.Recipes
-                                      join rg in _context.RecipeGroceries on r.Id equals rg.RecipeId
-                                      join g in _context.Groceries on rg.GroceryId equals g.Id
-                                      where _includeGroceries.Contains(g)
-                                      select new Recipe
-                                      {
-                                          Id = r.Id,
-                                          Title = r.Title,
-                                          DiffLevelId = r.DiffLevelId
-                                      };
 
-                        Recipes = new ObservableCollection<Recipe>(recipes.Distinct().ToList());
+                        var ingredientsWeHave = new List<string>();
+                        foreach (var ing in _includeGroceries)
+                        {
+                            var id = ing.Id;
+                            ingredientsWeHave.Add(_context.Groceries.Find(id).Name);
+                        }
+                        Dictionary<int, List<string>> recipesGroceriesMap = new Dictionary<int, List<string>>();
+                        var availableRecipes = new List<int>();
+                        // Fill recipe IDs
+                        foreach (var recipe in _context.Recipes.ToList())
+                        {
+                            recipesGroceriesMap.Add(recipe.Id, new List<string>());
+                        }
+
+                        // Fill groceries
+                        foreach (var recipeGrocery in _context.RecipeGroceries.ToList())
+                        {
+                            var groceryName = (from rg in _context.RecipeGroceries join g in _context.Groceries on recipeGrocery.GroceryId equals g.Id select g.Name).FirstOrDefault();
+                            recipesGroceriesMap[recipeGrocery.RecipeId].Add(groceryName);
+                        }
+
+                        foreach (var entry in recipesGroceriesMap)
+                        {
+                            bool enough = !entry.Value.Except(ingredientsWeHave).Any();
+                            if (enough)
+                            {
+                                availableRecipes.Add(entry.Key);
+                            }
+                        }
+
+                        var reps = from r in _context.Recipes
+                                   where availableRecipes.Contains(r.Id)
+                                   join ur in _context.UserRecipes on r.Id equals ur.RecipeId
+                                   select r;
+
+                        Recipes = new ObservableCollection<Recipe>(reps.Distinct().ToList());
                     }
                 }
                 else
                 {
                     _includeGroceries.Add(value);
 
-                    var recipes = from r in _context.Recipes
-                                  join rg in _context.RecipeGroceries on r.Id equals rg.RecipeId
-                                  join g in _context.Groceries on rg.GroceryId equals g.Id
-                                  where _includeGroceries.Contains(g)
-                                  select new Recipe
-                                  {
-                                      Id = r.Id,
-                                      Title = r.Title,
-                                      DiffLevelId = r.DiffLevelId
-                                  };
+                    var ingredientsWeHave = new List<string>();
+                    foreach (var ing in _includeGroceries)
+                    {
+                        var id = ing.Id;
+                        ingredientsWeHave.Add(_context.Groceries.Find(id).Name);
+                    }
+                    Dictionary<int, List<string>> recipesGroceriesMap = new Dictionary<int, List<string>>();
+                    var availableRecipes = new List<int>();
+                    // Fill recipe IDs
+                    foreach (var recipe in _context.Recipes.ToList())
+                    {
+                        recipesGroceriesMap.Add(recipe.Id, new List<string>());
+                    }
 
-                    Recipes = new ObservableCollection<Recipe>(recipes.Distinct().ToList());
+                    // Fill groceries
+                    foreach (var recipeGrocery in _context.RecipeGroceries.ToList())
+                    {
+                        var groceryName = (from rg in _context.RecipeGroceries join g in _context.Groceries on recipeGrocery.GroceryId equals g.Id select g.Name).FirstOrDefault();
+                        recipesGroceriesMap[recipeGrocery.RecipeId].Add(groceryName);
+                    }
+
+                    foreach (var entry in recipesGroceriesMap)
+                    {
+                        bool enough = !entry.Value.Except(ingredientsWeHave).Any();
+                        if (enough)
+                        {
+                            availableRecipes.Add(entry.Key);
+                        }
+                    }
+
+                    var reps = from r in _context.Recipes
+                               where availableRecipes.Contains(r.Id)
+                               join ur in _context.UserRecipes on r.Id equals ur.RecipeId
+                               select r;
+
+                    Recipes = new ObservableCollection<Recipe>(reps.Distinct().ToList());
                 }
             }
         }
