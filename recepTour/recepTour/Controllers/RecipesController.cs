@@ -81,6 +81,7 @@ namespace recepTour.Controllers
         // GET: Recipes
         public async Task<IActionResult> ByIngredients(string[] ingredients)
         {
+            /*
             var includeGroceries = from g in _context.Groceries
                                    where ingredients.Contains(g.Id.ToString())
                                    select g;
@@ -97,8 +98,50 @@ namespace recepTour.Controllers
                               DiffLevelName = r.DiffLevel.Description,
                               User = ur.User.Nickname
                           };
+            */
 
-            return View("Index", await recipes.Distinct().ToListAsync());
+            var ingredientsWeHave = new List<string>();
+            foreach(var ing in ingredients)
+            {
+                var id = Int32.Parse(ing);
+                ingredientsWeHave.Add(_context.Groceries.Find(id).Name);
+            }
+            Dictionary<int, List<string>> recipesGroceriesMap = new Dictionary<int, List<string>>();
+            var availableRecipes = new List<int>();
+            // Fill recipe IDs
+            foreach(var recipe in await _context.Recipes.ToListAsync())
+            {
+                recipesGroceriesMap.Add(recipe.Id, new List<string>());
+            }
+
+            // Fill groceries
+            foreach(var recipeGrocery in await _context.RecipeGroceries.ToListAsync())
+            {
+                var groceryName = (from rg in _context.RecipeGroceries join g in _context.Groceries on recipeGrocery.GroceryId equals g.Id select g.Name).FirstOrDefault();
+                recipesGroceriesMap[recipeGrocery.RecipeId].Add(groceryName);
+            }
+
+            foreach(var entry in recipesGroceriesMap)
+            {
+                bool enough = !entry.Value.Except(ingredientsWeHave).Any();
+                if(enough)
+                {
+                    availableRecipes.Add(entry.Key);
+                }
+            }
+
+            var reps = from r in _context.Recipes
+                       where availableRecipes.Contains(r.Id)
+                       join ur in _context.UserRecipes on r.Id equals ur.RecipeId
+                       select new RecipeViewModel
+                        {
+                            Id = r.Id,
+                            Title = r.Title,
+                            DiffLevelName = r.DiffLevel.Description,
+                            User = ur.User.Nickname
+                        };
+
+            return View("Index", await reps.Distinct().ToListAsync());
         }
 
         // GET: Recipes/Details/5
