@@ -77,7 +77,7 @@ namespace recepTour.Controllers
                 var u = new IdentityUser { UserName = uc.Email, Email = uc.Email, Id = id.ToString()};
                 var result = await _userManager.CreateAsync(u, uc.Password);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 TempData["Message"] = "Registration for user: " + user.Nickname + " failed!";
                 ModelState.AddModelError("", "E-mail or nickname already in use!") ;
