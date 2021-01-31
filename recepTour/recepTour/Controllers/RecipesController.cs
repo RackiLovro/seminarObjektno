@@ -52,7 +52,7 @@ namespace recepTour.Controllers
 
             if (!String.IsNullOrEmpty(title))
             {
-                recipes = recipes.Where(r => r.Title.Contains(title));
+                recipes = recipes.Where(r => r.Title.ToUpper().Contains(title.ToUpper()));
             }
             return View(await recipes.ToListAsync());
         }
@@ -73,16 +73,16 @@ namespace recepTour.Controllers
             if(!String.IsNullOrEmpty(userName))
             {
                 //var userId = _context.Users.Where(u => userName.Equals(u.Nickname)).FirstOrDefaultAsync().Result.Id;
-                recipes = recipes.Where(r => r.User.Contains(userName));
+                recipes = recipes.Where(r => r.User.ToUpper().Contains(userName.ToUpper()));
             }
             return View("Index", await recipes.ToListAsync());
         }
 
         // GET: Recipes
-        public async Task<IActionResult> ByIngridients(string[] ingridients)
+        public async Task<IActionResult> ByIngredients(string[] ingredients)
         {
             var includeGroceries = from g in _context.Groceries
-                                   where ingridients.Contains(g.Id.ToString())
+                                   where ingredients.Contains(g.Id.ToString())
                                    select g;
            
             var recipes = from r in _context.Recipes
