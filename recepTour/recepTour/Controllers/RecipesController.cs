@@ -52,7 +52,7 @@ namespace recepTour.Controllers
 
             if (!String.IsNullOrEmpty(title))
             {
-                recipes = recipes.Where(r => r.Title.Contains(title));
+                recipes = recipes.Where(r => r.Title.ToUpper().Contains(title.ToUpper()));
             }
             return View(await recipes.ToListAsync());
         }
@@ -73,7 +73,7 @@ namespace recepTour.Controllers
             if(!String.IsNullOrEmpty(userName))
             {
                 //var userId = _context.Users.Where(u => userName.Equals(u.Nickname)).FirstOrDefaultAsync().Result.Id;
-                recipes = recipes.Where(r => r.User.Contains(userName));
+                recipes = recipes.Where(r => r.User.ToUpper().Contains(userName.ToUpper()));
             }
             return View("Index", await recipes.ToListAsync());
         }
